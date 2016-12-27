@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ffb4a9ed-ed10-44e3-96c3-92c413ad73ef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tipo_dispositivo.`Id_tipo_dispositivo` AS tipo_dispositivo_Id_tipo_dispositivo,
+     tipo_dispositivo.`Tipo_dispositivo` AS tipo_dispositivo_Tipo_dispositivo,
+     dispositivo.`Serial_dispositivo` AS dispositivo_Serial_dispositivo,
+     dispositivo.`Marca_dispositivo` AS dispositivo_Marca_dispositivo,
+     dispositivo.`Modelo_dispositivo` AS dispositivo_Modelo_dispositivo,
+     dispositivo.`Id_tipo_dispositivo` AS dispositivo_Id_tipo_dispositivo,
+     dispositivo.`Id_persona_reg` AS dispositivo_Id_persona_reg,
+     dispositivo.`Id_vigilante` AS dispositivo_Id_vigilante,
+     dispositivo.`Fecha_registro` AS dispositivo_Fecha_registro,
+     persona.`Id_persona_reg` AS persona_Id_persona_reg,
+     persona.`Nombre_persona` AS persona_Nombre_persona,
+     persona.`Apellido_persona` AS persona_Apellido_persona,
+     persona.`Ficha_persona` AS persona_Ficha_persona,
+     persona.`Id_tipo_persona` AS persona_Id_tipo_persona,
+     ingreso_dispositivo.`cons_ing_dispositivo` AS ingreso_dispositivo_cons_ing_dispositivo,
+     ingreso_dispositivo.`Id_persona_ing` AS ingreso_dispositivo_Id_persona_ing,
+     ingreso_dispositivo.`Serial_dispositivo` AS ingreso_dispositivo_Serial_dispositivo,
+     ingreso_dispositivo.`Fecha_ingreso` AS ingreso_dispositivo_Fecha_ingreso,
+     ingreso_dispositivo.`Fecha_salida` AS ingreso_dispositivo_Fecha_salida
+FROM
+     `tipo_dispositivo` tipo_dispositivo INNER JOIN `dispositivo` dispositivo ON tipo_dispositivo.`Id_tipo_dispositivo` = dispositivo.`Id_tipo_dispositivo`
+     INNER JOIN `persona` persona ON dispositivo.`Id_persona_reg` = persona.`Id_persona_reg`
+     INNER JOIN `ingreso_dispositivo` ingreso_dispositivo ON persona.`Id_persona_reg` = ingreso_dispositivo.`Id_persona_ing`]]>
+	</queryString>
+	<field name="dispositivo_Serial_dispositivo" class="java.lang.String"/>
+	<field name="dispositivo_Marca_dispositivo" class="java.lang.String"/>
+	<field name="ingreso_dispositivo_Id_persona_ing" class="java.lang.Long"/>
+	<field name="persona_Nombre_persona" class="java.lang.String"/>
+	<field name="persona_Apellido_persona" class="java.lang.String"/>
+	<field name="tipo_dispositivo_Id_tipo_dispositivo" class="java.lang.Integer"/>
+	<field name="tipo_dispositivo_Tipo_dispositivo" class="java.lang.String"/>
+	<field name="ingreso_dispositivo_Fecha_ingreso" class="java.sql.Timestamp"/>
+	<field name="ingreso_dispositivo_Fecha_salida" class="java.sql.Timestamp"/>
+	<group name="dispositivo_Serial_dispositivo">
+		<groupExpression><![CDATA[$F{dispositivo_Serial_dispositivo}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="209" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="23" width="258" height="159" uuid="41cae74b-43f6-49fb-95ec-40827f822b9e"/>
+				<imageExpression><![CDATA["C:\\Users\\Public\\Pictures\\Sample Pictures\\Desert.jpg"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement x="299" y="41" width="200" height="50" uuid="18f69871-7206-4f55-bde8-39806cb86311"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false" barHeight="100">
+					<jr:codeExpression><![CDATA[hola que ahce]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="79" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
