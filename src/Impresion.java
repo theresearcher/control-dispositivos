@@ -551,11 +551,12 @@ contador = 0;
     
     try {   
         JOptionPane.showMessageDialog(null, "estoy antes de la carga del objeto");
-        JasperReport jp = (JasperReport) JRLoader.loadObject(Impresion.class.getResource("seriales.jasper"));
+        JasperReport jp = (JasperReport) JRLoader.loadObject(Impresion.class.getResource("seriales.jasper"));//27-12-2016 Faltaba colocarlo en el Src
         Map parametro = new HashMap();
             
         parametro.put("parameter1", this.jLabel101.getText());
-            JOptionPane.showMessageDialog(null, "el parametro capturado es:"+parametro);
+        
+        JOptionPane.showMessageDialog(null, "el parametro capturado es:"+parametro);
         JasperPrint j= JasperFillManager.fillReport(jp, parametro, con);
         JasperViewer jv = new JasperViewer(j,false);
         JOptionPane.showMessageDialog(null, "voy antes de multiples seriales");
@@ -608,7 +609,7 @@ contador = 0;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     public static javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    public static javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
     public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

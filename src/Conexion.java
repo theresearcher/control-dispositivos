@@ -10,7 +10,7 @@ public class Conexion {
     String rol = "";   
 Connection con = null;
 String cargo = "";
-String contraseña = "root"; //ESTO ES LO UNICO QUE TIENEN QUE CAMBIAR
+String contraseña = ""; //ESTO ES LO UNICO QUE TIENEN QUE CAMBIAR
 String user = "root";
         
 

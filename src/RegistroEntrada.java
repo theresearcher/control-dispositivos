@@ -234,7 +234,7 @@ if(this.jTextField1.getText().length()== 0){
         
         try{
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from dispositivo where Serial_dispositivo = '"+serial+"'" );
             
@@ -296,7 +296,7 @@ try{
    JOptionPane.showMessageDialog(null,"Suministre primero el serial del dispositivo que desea ingresar","Alerta", JOptionPane.ERROR_MESSAGE);
     }else{
 //    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select est_band from bandera where Serial_dispositivo = '"+recoger+"'" );
             //ResultSet resultado = estado.executeQuery("select * from bandera where Serial_dispositivo = "+recoger );

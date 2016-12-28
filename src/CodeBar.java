@@ -19,9 +19,7 @@ import java.io.FileNotFoundException;
  */
 public class CodeBar {
 
- /**
-  * @param args
-  */
+
  public static Image picture;   
  public static void main(String[] args) throws FileNotFoundException  {
 

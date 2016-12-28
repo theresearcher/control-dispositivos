@@ -99,7 +99,7 @@ public class Confirmacionexisp extends javax.swing.JFrame {
         cedula = jTextField1.getText();
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from persona where Id_persona_reg = "+cedula );
             //ResultSet resultado = estado.executeQuery("select * from ingreso_dispositivo where Id_persona_reg = "+cedula );
@@ -116,7 +116,7 @@ public class Confirmacionexisp extends javax.swing.JFrame {
                     
                          try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con2 = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            Connection con2 = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estados = con2.createStatement();
             ResultSet resultados = estados.executeQuery("select Nombre_vigilante, Apellido_vigilante from vigilante where Id_vigilante ="+RegistroEntrada.jLabel25.getText()+"");
              while(resultados.next()){

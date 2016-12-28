@@ -174,7 +174,7 @@ String namead;
         namead = jTextField1.getText();
         try{
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select persona.nombre_persona,persona.apellido_persona,ingreso_dispositivo.id_persona_ing,dispositivo.serial_dispositivo,\n" +
 "\n" +
@@ -206,7 +206,7 @@ String namead;
         {
             try{
 //             Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select persona.nombre_persona,persona.apellido_persona,ingreso_dispositivo.id_persona_ing,dispositivo.serial_dispositivo,\n" +
 "\n" +
@@ -266,7 +266,7 @@ String namead;
         try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select persona.ficha_persona,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
 "\n" +
@@ -301,7 +301,7 @@ String namead;
             try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select persona.ficha_persona,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
 "\n" +
@@ -357,7 +357,7 @@ String namead;
         try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
 "\n" +
@@ -390,7 +390,7 @@ String namead;
              try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
 "\n" +
@@ -444,7 +444,7 @@ String namead;
         ser = jTextField1.getText();
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select dispositivo.serial_dispositivo,dispositivo.Marca_dispositivo,ingreso_dispositivo.id_persona_ing,\n" +
 "persona.nombre_persona,\n" +
@@ -480,7 +480,7 @@ String namead;
           try{
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select dispositivo.serial_dispositivo,dispositivo.Marca_dispositivo,ingreso_dispositivo.id_persona_ing,\n" +
 "persona.nombre_persona,\n" +
@@ -532,7 +532,7 @@ String namead;
 //        try{
 //
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
 //            java.sql.Statement estado = con.createStatement();
 //            ResultSet resultado = estado.executeQuery("select dispositivo.Serial_dispositivo,Modelo_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo where dispositivo.Serial_dispositivo = '"+serialdisp+"'order by dispositivo.Serial_dispositivo asc");
 //            while(resultado.next()){
@@ -550,7 +550,7 @@ String namead;
 //         try{
 //
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
 //            java.sql.Statement estado = con.createStatement();
 //            ResultSet resultado = estado.executeQuery("select dispositivo.Serial_dispositivo,Modelo_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo order by dispositivo.Serial_dispositivo asc");
 //            while(resultado.next()){
@@ -584,7 +584,7 @@ String namead;
 //        try{
 //
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
 //            java.sql.Statement estado = con.createStatement();
 //            ResultSet resultado = estado.executeQuery("select Modelo_dispositivo,dispositivo.Serial_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo where Modelo_dispositivo = '"+modeldisp+"' order by Modelo_dispositivo asc");
 //            while(resultado.next()){
@@ -603,7 +603,7 @@ String namead;
 //          try{
 //
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
 //            java.sql.Statement estado = con.createStatement();
 //            ResultSet resultado = estado.executeQuery("select Modelo_dispositivo,dispositivo.Serial_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo order by Modelo_dispositivo asc");
 //            while(resultado.next()){
@@ -639,7 +639,7 @@ String namead;
         namev = jTextField1.getText();
         try{
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from vigilante where Nombre_vigilante like  '"+namev+"'");
                 while(resultado.next()){
@@ -662,7 +662,7 @@ String namead;
           try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from vigilante");
             while(resultado.next()){
@@ -699,7 +699,7 @@ String namead;
         idvigi = jTextField1.getText();
         try{
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from vigilante where Id_vigilante like  '"+idvigi+"'");
                 while(resultado.next()){
@@ -720,7 +720,7 @@ String namead;
           try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from vigilante");
             while(resultado.next()){
@@ -759,7 +759,7 @@ String namead;
         try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
 "dispositivo.serial_dispositivo,\n" +
@@ -793,7 +793,7 @@ String namead;
              try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
 "dispositivo.serial_dispositivo,\n" +
@@ -851,7 +851,7 @@ String namead;
         try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
 "\n" +
@@ -887,7 +887,7 @@ String namead;
              try{
 
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
 "\n" +

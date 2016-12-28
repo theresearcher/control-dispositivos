@@ -228,7 +228,7 @@ private  static String cadena = "0123456789abcdefghijklmnopqrstuvwxyz";
         
         try{
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = reg.createStatement();
             ResultSet resultado = estado.executeQuery("select * from dispositivo where Serial_dispositivo = '"+serial+"'" );
             
@@ -291,7 +291,7 @@ this.setVisible(false);
 }else{
             
 //    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = reg.createStatement();
             ResultSet resultado = estado.executeQuery("select est_band from bandera where Serial_dispositivo = '"+recoger+"'" );
             
@@ -312,7 +312,7 @@ this.setVisible(false);
      //Revision de seguridad presalida       
     
 //    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con00 = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con00 = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado00 = reg.createStatement();
             ResultSet resultado00 = estado00.executeQuery("select Id_persona_ing, serial_dispositivo, Fecha_salida from ingreso_dispositivo where Id_persona_ing = '"+Confirmacionexispsal.greencard+"' and serial_dispositivo = '"+this.jTextField1.getText()+"' and Fecha_salida is "+varn+"");            
     

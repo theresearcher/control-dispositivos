@@ -156,7 +156,7 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
  
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select Id_persona_reg from persona where Id_persona_reg = "+id+"");
                 while(resultado.next()){

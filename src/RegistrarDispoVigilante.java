@@ -194,7 +194,7 @@ RegistrarDispoVigilante.setVisible(true);
    String dato = this.jTextField1.getText();
         try{
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
             java.sql.Statement estado = registro.createStatement();
             ResultSet resultado = estado.executeQuery("select * from persona where Id_persona_reg = "+dato+"" );
             
