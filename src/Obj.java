@@ -12,7 +12,8 @@ public class Obj implements Printable {
     public int print(Graphics g, PageFormat f, int pageIndex){
         if(pageIndex==0){
             g.setFont(fuente);
-            g.drawString(llegaron, 100, 200);
+            g.drawString(llegaron, 300, 200);
+          
             return PAGE_EXISTS;
         }else{
          return NO_SUCH_PAGE;   

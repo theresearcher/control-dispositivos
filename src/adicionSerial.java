@@ -46,11 +46,11 @@ public class adicionSerial extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
-        jLabel1.setText("¿Desea agregar seleccionar otro serial?");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, 30));
+        jLabel1.setText("¿Desea  seleccionar otro serial?");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, 30));
 
         jButton1.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
-        jButton1.setText("Ingresar");
+        jButton1.setText("SI");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -59,7 +59,7 @@ public class adicionSerial extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
-        jButton2.setText("Volver");
+        jButton2.setText("NO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

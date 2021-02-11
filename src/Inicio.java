@@ -8,19 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author ANDRES
- */
+
 public class Inicio extends javax.swing.JFrame {
 
 String  dato;
+String tur;
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -45,8 +38,7 @@ public void acceder(String usuario, String pass)
             //y otro para solo vigilante segun el ususario y contraseña que se le va a poner 
             if(cap.equals("Administrador"))
             {
-                  this.setVisible(false);
-                    //JOptionPane.showMessageDialog(null, "Bienvenido");
+                    this.setVisible(false);
                     InicioAdmin Inicio = new InicioAdmin();
                     Inicio.setVisible(true);
                     Inicio.pack();
@@ -65,15 +57,18 @@ public void acceder(String usuario, String pass)
                          RegistroEntrada.jLabel25.setText(rs.getString(1));
                          RegistroSalida.idout24.setText(rs.getString(1));
                          dato = rs.getString("id_vigilante");
+                         
+                         CambioContraseña.jLabel7.setText(dato);
+                         verificarDatos();
                      }
-                }catch(Exception e){
-                    
+                }catch(Exception e)
+                {
+                  System.out.println("Error "+e);  
                 }
-            this.setVisible(false);
-                    //JOptionPane.showMessageDialog(null, "Bienvenido");
-                   InicioVigilante Inicio = new InicioVigilante();
-                    Inicio.setVisible(true);
-                    Inicio.pack();
+//                    this.setVisible(false);
+//                    InicioVigilante Inicio = new InicioVigilante();
+//                    Inicio.setVisible(true);
+//                    Inicio.pack();
                     
             }
             if((!cap.equals("Administrador"))&& (!cap.equals("Vigilante")))
@@ -238,6 +233,7 @@ public void acceder(String usuario, String pass)
       String usu=jTextField1.getText();
     String pas=new String(jPasswordField2.getPassword());
     acceder(usu, pas);
+    //ventanaContra();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -247,12 +243,13 @@ Inicio.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
-   int key = evt.getKeyCode(); //esto va a funcionar cuando ud le de enter PERO al BOTOOOOOOOOOOOOOOON
-        if (key == KeyEvent.VK_ENTER) {
-             String usu=jTextField1.getText();
-    String pas=new String(jPasswordField2.getPassword());
-    acceder(usu, pas);        
-        }
+    int key = evt.getKeyCode(); //esto va a funcionar cuando ud le de enter PERO al BOTOOOOOOOOOOOOOOON
+         if (key == KeyEvent.VK_ENTER) {
+              String usu=jTextField1.getText();
+     String pas=new String(jPasswordField2.getPassword());
+     acceder(usu, pas);  
+     //ventanaContra();
+         }
     }//GEN-LAST:event_jButton3KeyPressed
 
     /**
@@ -289,6 +286,124 @@ Inicio.setVisible(true);
             }
         });
     }
+    
+    private void ventanaContra()
+    {       
+       //new CambioContraseña().setVisible(true);
+       //this.setVisible(false);
+        String data;
+     try {
+            
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery("select PrimerCambio from vigilante where id_vigilante = "+dato+"; ");
+                while(rs.next())
+                {
+                    JOptionPane.showMessageDialog(this, "aqui voy");
+                    data=rs.getString("PrimerCambio");
+                  
+                    if(data.equals(0))
+                    {
+                        JOptionPane.showMessageDialog(this, "no ha cambiado");
+                        new CambioContraseña().setVisible(true);
+                        this.setVisible(false);
+                        
+                        
+                         CambioContraseña cr = new CambioContraseña();
+                        cr.setVisible(true);
+                        dispose();
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Algo pasó");
+            }
+
+    
+    }
+    
+    public void verificarDatos()
+    {
+        String id;
+        String user;
+        String pasok;
+        user = jTextField1.getText();
+        pasok = jPasswordField2.getText();
+        Long idres;
+        int contrares;
+        int prime;
+        
+      try{
+          Statement st = cn.createStatement();
+                ResultSet rst1 = st.executeQuery("select id_vigilante,count(Contraseña),PrimerCambio from vigilante where Usuario='"+user+"' && contraseña='"+pasok+"'");
+                while(rst1.next())
+                {
+                    //idres=rst1.getInt("id_vigilante");
+                    idres=rst1.getLong("id_vigilante");
+                    contrares = rst1.getInt("count(Contraseña)");
+                    prime = rst1.getInt("PrimerCambio");
+                            
+                      if(idres == 0)
+                        {
+                            JOptionPane.showMessageDialog(null, "La contraseña esta mal");
+                        }
+                      
+                      if(idres != 0){
+                          if(prime == 0)
+                          {    
+                              JOptionPane.showMessageDialog(null,"Debe realizar el primer cambio de contraseña");
+                              CambioContraseña cr = new CambioContraseña();
+                              cr.setVisible(true);
+                              dispose();   
+                          }
+                          
+                          if(prime == 1)
+                          {
+                                this.setVisible(false);
+                                InicioVigilante Inicio = new InicioVigilante();
+                                Inicio.setVisible(true);
+                                Inicio.pack();
+                    
+                          }
+                      }
+                      
+                }
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, "Algo pasó abajo"+e);
+            }
+    }
+      
+      //segunda consulta
+//          try {
+//            int resultado;
+//          
+//          String contra1;
+//            
+//            contra1 = jTextField1.getText();
+//            
+//            JOptionPane.showMessageDialog(null, "voy verificando ");
+//                Statement st = cn.createStatement();
+//                ResultSet rst1 = st.executeQuery("select count(Contraseña) from vigilante where Usuario = '"+contra1+"' and Id_vigilante ='"+id+"';");
+//                while(rst1.next())
+//                {
+//                    resultado=rst1.getInt("count(Contraseña)");
+//                            
+//                      if(resultado == 0)
+//                        {
+//                            JOptionPane.showMessageDialog(null, "La contraseña esta mal");
+//                        }
+//                }
+//            }
+//            catch(Exception e)
+//            {
+//                JOptionPane.showMessageDialog(null, "Algo pasó abajo");
+//            }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;

@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ Conexion ctm = new Conexion();
         initComponents();
         this.jTextField1.requestFocus();
         this.setLocationRelativeTo(null);
+        jButton3.setEnabled(false);
         
         
     }
@@ -83,13 +85,19 @@ Conexion ctm = new Conexion();
         getContentPane().add(jcMousePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 70));
 
         jButton2.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/back 60.png"))); // NOI18N
         jButton2.setText("VOLVER");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 110, 30));
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, 190, 60));
 
         jLabel4.setFont(new java.awt.Font("Myriad Pro", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
@@ -150,6 +158,11 @@ Conexion ctm = new Conexion();
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, -1, 50));
 
         jLabel11.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
@@ -178,6 +191,11 @@ Conexion ctm = new Conexion();
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 490, -1, -1));
@@ -211,7 +229,80 @@ Conexion ctm = new Conexion();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if(this.jTextField1.getText().length()== 0){
+buscaSerial();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+new Confirmacionexisp().setVisible(true);
+this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ingresar();        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        { 
+           buscaSerial();
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+           ingresar();        
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+           new Confirmacionexisp().setVisible(true);
+           this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistroEntrada().setVisible(true);
+            }
+        });
+    }
+    
+    private void buscaSerial(){
+        if(this.jTextField1.getText().length()== 0){
                JOptionPane.showMessageDialog(null, "Ingrese un dato en el campo de texto para poder \n consultar su dispositivo", "Informacion", JOptionPane.OK_OPTION);
            } 
         String serial; 
@@ -233,8 +324,7 @@ if(this.jTextField1.getText().length()== 0){
         
         
         try{
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
+
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select * from dispositivo where Serial_dispositivo = '"+serial+"'" );
             
@@ -253,6 +343,7 @@ if(this.jTextField1.getText().length()== 0){
                 jLabel16.setText("Modelo: "+reco2);
                 jLabel18.setText("Tipo dispositivo: "+reco3);
                 jLabel9.setText("Fecha registro: "+reco4);
+                jButton3.setEnabled(true);
                 
            
                 }
@@ -282,21 +373,15 @@ if(this.jTextField1.getText().length()== 0){
             System.out.println(e.toString()); //desde aqui empieza la consulta en caso de que no se digite nada en el campo
             JOptionPane.showMessageDialog(null,"Ingrese solo numeros en este campo","Informacion " ,JOptionPane.ERROR_MESSAGE);
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-new Confirmacionexisp().setVisible(true);
-this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-try{
+    private void ingresar(){
+        try{
     if(this.jTextField1.getText().equals("")){
    JOptionPane.showMessageDialog(null,"Suministre primero el serial del dispositivo que desea ingresar","Alerta", JOptionPane.ERROR_MESSAGE);
     }else{
 //    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
             java.sql.Statement estado = con.createStatement();
             ResultSet resultado = estado.executeQuery("select est_band from bandera where Serial_dispositivo = '"+recoger+"'" );
             //ResultSet resultado = estado.executeQuery("select * from bandera where Serial_dispositivo = "+recoger );
@@ -352,44 +437,7 @@ catch(SQLException ex){
 }
         
        }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroEntrada().setVisible(true);
-            }
-        });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

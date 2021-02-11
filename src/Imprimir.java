@@ -36,5 +36,18 @@ public class Imprimir{
         }
     }
     }
-    
+   
+           public static void went(){
+         PrinterJob trabajo = PrinterJob.getPrinterJob();
+        
+    if(trabajo.printDialog()){
+        try{
+            trabajo.print();
+            
+        }
+        catch(PrinterException e){
+            JOptionPane.showMessageDialog(null,"el error es el siguiente"+e,"Informacion", JOptionPane.OK_OPTION);
+        }
+    }
+    }
 }

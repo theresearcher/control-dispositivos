@@ -1,7 +1,9 @@
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,17 +49,23 @@ public class InicioVigilante extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Myriad Pro", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
         jLabel4.setText("Seleccione una opcion");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 290, 40));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 1050, 20));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 1120, 20));
 
         jLabel8.setFont(new java.awt.Font("Myriad Pro", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,7 +81,12 @@ public class InicioVigilante extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 640, 190, 40));
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 640, 240, 40));
 
         jLabel5.setFont(new java.awt.Font("Myriad Pro", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 153));
@@ -83,7 +96,7 @@ public class InicioVigilante extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra Verde35% Azul 65%.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 610, 1390, 130));
 
-        jButton4.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/looking blue 40.png"))); // NOI18N
         jButton4.setText("CONSULTAR");
         jButton4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Myriad Pro", 1, 18))); // NOI18N
@@ -92,20 +105,30 @@ public class InicioVigilante extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 120, 190, 60));
+        jButton4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton4KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 280, 60));
 
-        jButton6.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Laptop_35761.png"))); // NOI18N
-        jButton6.setText("REGISTRAR DISPOSITIVO");
+        jButton6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Barcode-icon 60.png"))); // NOI18N
+        jButton6.setText("IMPRIMIR SERIALES");
         jButton6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Myriad Pro", 1, 18))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 280, 60));
+        jButton6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton6KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 300, 280, 60));
 
-        jButton5.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/addmale 40.png"))); // NOI18N
         jButton5.setText("REGISTRAR PERSONA");
         jButton5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Myriad Pro", 1, 18))); // NOI18N
@@ -114,7 +137,12 @@ public class InicioVigilante extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 280, 60));
+        jButton5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton5KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 280, 60));
 
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/-Icono sena v3.png"))); // NOI18N
         getContentPane().add(jcMousePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 70));
@@ -122,7 +150,7 @@ public class InicioVigilante extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra naranjado.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 90));
 
-        jButton1.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Ok 30.png"))); // NOI18N
         jButton1.setText("INGRESAR DISPOSITIVO");
         jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Myriad Pro", 1, 18))); // NOI18N
@@ -131,9 +159,14 @@ public class InicioVigilante extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 280, 60));
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 280, 60));
 
-        jButton3.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/exit 30.png"))); // NOI18N
         jButton3.setText("    SALIDA DISPOSITIVO   ");
         jButton3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Myriad Pro", 1, 18))); // NOI18N
@@ -142,11 +175,32 @@ public class InicioVigilante extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, 280, 60));
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 280, 60));
+
+        jButton9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Laptop_35761.png"))); // NOI18N
+        jButton9.setText("REGISTRAR DISPOSITIVO");
+        jButton9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Myriad Pro", 1, 18))); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jButton9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton9KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 280, 60));
 
         jLabel3.setFont(new java.awt.Font("Myriad Pro", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/maxresdefault.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1420, 640));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1420, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,36 +223,15 @@ InicioVigilante.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-   
-
-        
-        RegistrarDispoVigilante InicioVigilante = new RegistrarDispoVigilante();
+Impresion InicioVigilante = new Impresion();
 this.setVisible(false);
 InicioVigilante.setVisible(true);
-int longitudCad = cadena.length();
-
-                String clave = "";
-                String caracter = "";
-                
-                 for (int i = 0; i < 6; i++) {
-                    int numero = (int) (Math.random() * (longitudCad));
-                    caracter = cadena.substring(numero, numero + 1);
-                    clave = clave + caracter;
-                }
-               //  codigo generador= new codigo();//"Frame2" es el nombre que tu le pusiste a tu 2do jframe
-         
-         RegistrarDispoVigilante.jTextField9.setText(clave);
-
-
-               
-
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Confirmacionexisp InicioVigilante = new Confirmacionexisp();
-this.setVisible(false);
-InicioVigilante.setVisible(true);
+        Confirmacionexisp InicioVigilante = new Confirmacionexisp();
+        this.setVisible(false);
+        InicioVigilante.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -206,6 +239,94 @@ InicioVigilante.setVisible(true);
         this.setVisible(false);
         InicioVigilante.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton5KeyPressed
+        int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            RegistrarPersonaVigilante InicioVigilante = new RegistrarPersonaVigilante();
+            this.setVisible(false);
+            InicioVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton5KeyPressed
+
+    private void jButton6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton6KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            Impresion InicioVigilante = new Impresion();
+            this.setVisible(false);
+            InicioVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton6KeyPressed
+
+    private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
+        int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            ConsultasVigilante InicioVigilante = new ConsultasVigilante();
+            this.setVisible(false);
+            InicioVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton4KeyPressed
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+        int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER) 
+        {
+            Confirmacionexispsal InicioVigilante = new Confirmacionexispsal();
+            this.setVisible(false);
+            InicioVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            Confirmacionexisp InicioVigilante = new Confirmacionexisp();
+            this.setVisible(false);
+            InicioVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+CodigoSena InicioVigilante = new CodigoSena();
+this.setVisible(false);
+InicioVigilante.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton9KeyPressed
+          int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+          CodigoSena InicioVigilante = new CodigoSena();
+          this.setVisible(false);
+          InicioVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton9KeyPressed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+ int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+          new Inicio().setVisible(true);
+          this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+//
+//    String code = JOptionPane.showInputDialog(
+//        null, 
+//        "Enter the secret code to continue (label)", 
+//        "Secret code needed (title)", 
+//        JOptionPane.WARNING_MESSAGE
+//    );
+//    // if the user presses Cancel, this will be null
+//    System.out.printf("The secret code is '%s'.\n", code);
+//    System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -241,6 +362,21 @@ InicioVigilante.setVisible(true);
             }
         });
     }
+    
+    private void aleatorio(){
+        int longitudCad = cadena.length();
+
+                String clave = "";
+                String caracter = "";
+                
+                 for (int i = 0; i < 6; i++) {
+                    int numero = (int) (Math.random() * (longitudCad));
+                    caracter = cadena.substring(numero, numero + 1);
+                    clave = clave + caracter;
+                }
+         
+        RegistrarDispoVigilante.jTextField9.setText(clave);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -249,6 +385,7 @@ InicioVigilante.setVisible(true);
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

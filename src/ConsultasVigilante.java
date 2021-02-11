@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ public class ConsultasVigilante extends javax.swing.JFrame {
 //constructor de la ventana      
     public ConsultasVigilante() {
         initComponents();
-        this.jTextField1.requestFocus();
+        //this.jTextField1.requestFocus();
         this.setLocationRelativeTo(null);
         
     }
@@ -40,10 +41,8 @@ public class ConsultasVigilante extends javax.swing.JFrame {
         jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         modificar = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -53,6 +52,8 @@ public class ConsultasVigilante extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         imprim.setText("Imprimir Serial");
         imprim.setAutoscrolls(true);
@@ -91,26 +92,26 @@ public class ConsultasVigilante extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Myriad Pro", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
         jLabel4.setText("Softing");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 150, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra naranjado.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 90));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 150, 40));
 
         jLabel5.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
         jLabel5.setText("Consultar por: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 120, 20));
 
         jButton2.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
-        jButton2.setText("ATRAS ");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/back 60.png"))); // NOI18N
+        jButton2.setText("VOLVER");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 640, 100, 40));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra Verde35% Azul 65%.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 610, 1410, 120));
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 630, 190, 60));
 
         modificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,6 +149,11 @@ public class ConsultasVigilante extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 120, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
@@ -162,6 +168,12 @@ public class ConsultasVigilante extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/maxresdefault.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 80, 1390, 540));
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra Verde35% Azul 65% 1400P157.png"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 620, 1370, 90));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra naranjado 1400P132.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, -6, 1360, 90));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,859 +184,11 @@ ConsultasVigilante.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String combo;
-
-combo = this.jComboBox1.getSelectedItem().toString();
-
-switch (combo){
-    //IMPORTANTE PRIMER CASE
-    //Este primer case es para consulta el nombre de un usuario del sistema
-    case "Nombre":
-        this.jTextField1.requestFocus();
-String name;
-        String nombre[]= new String[11];
-        DefaultTableModel model = new DefaultTableModel();
-        
-        //model.addColumn("Identificacion");
-        model.addColumn("Nombre");
-        model.addColumn("Apellido");
-       model.addColumn("Identificacion");
-        model.addColumn("Serial dispositivo");
-        model.addColumn("Tipo dispositivo");
-        //model.addColumn("Modelo dispositivo");
-        //model.addColumn("Id vigilante");
-        model.addColumn("Fecha Ingreso");
-        model.addColumn("Fecha salida");
-        //model.addColumn("Fecha registro");
-        
-
-
-        ConsultasVigilante.modificar.setModel(model);
-        name = jTextField1.getText();
-        try{
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select persona.nombre_persona,persona.apellido_persona,ingreso_dispositivo.id_persona_ing,dispositivo.serial_dispositivo,\n" +
-"\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
-"\n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-" \n" +
-"where persona.Nombre_persona = '"+name+"' order by persona.nombre_persona;");
-                while(resultado.next()){
-                //nombre[0] = resultado.getString("id_persona_ing");
-                nombre[0] = resultado.getString("nombre_persona");
-                nombre[1] = resultado.getString("apellido_persona");
-                nombre[2] = resultado.getString("id_persona_ing");
-                nombre[3] = resultado.getString("serial_dispositivo");
-                nombre[4] = resultado.getString("tipo_dispositivo");
-                //nombre[6] = resultado.getString("Modelo_dispositivo");
-                //nombre[7] = resultado.getString("id_vigilante");
-                nombre[5] = resultado.getString("fecha_ingreso");
-                nombre[6] = resultado.getString("fecha_salida");
-                //nombre[10] = resultado.getString("Fecha_registro");
-                model.addRow(nombre);
-            }
-            ConsultasVigilante.modificar.setModel(model);
-        }catch(Exception e){
-            System.out.println(e.toString()); //desde aqui empieza la consulta en caso de que no se digite nada en el campo
-        };
-        
-        if(jTextField1.getText().equals("")){
-      
-        try{
-            
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select persona.nombre_persona,persona.apellido_persona,ingreso_dispositivo.id_persona_ing,dispositivo.serial_dispositivo,\n" +
-"\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
-"\n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-" \n" +
-"where persona.Nombre_persona = persona.Nombre_persona order by persona.nombre_persona;");
-            //ResultSet resultado = estado.executeQuery("select distinct persona.*, dispositivo.Serial_dispositivo, dispositivo.Marca_dispositivo from persona,dispositivo where persona.Nombre_persona ='"+name+"'");
-                while(resultado.next()){
-                
-                nombre[0] = resultado.getString("nombre_persona");
-                nombre[1] = resultado.getString("apellido_persona");
-                nombre[2] = resultado.getString("id_persona_ing");
-                //nombre1[3] = resultado.getString("Telefono_persona");
-                nombre[3] = resultado.getString("serial_dispositivo");
-                nombre[4] = resultado.getString("tipo_dispositivo");
-                //nombre1[6] = resultado.getString("Modelo_dispositivo");
-                //nombre1[7] = resultado.getString("id_vigilante");
-                //nombre1[8] = resultado.getString("Fecha_registro");
-                nombre[5] = resultado.getString("fecha_ingreso");
-                nombre[6] = resultado.getString("fecha_salida");
-                
-                model.addRow(nombre);
-                
-            }
-            ConsultasVigilante.modificar.setModel(model);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        }
-        break;
-
-        
-        
-        
-      //INICIO OPCION FUERA DE USO  
-    //IMPORTANTE SEGUNDO CASE    
-    //Aqui empieza el segundo case, este es para el apellido    
-    case "Serial":
-        
-        String ser;
-        String code[]= new String[11];
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Serial dispositivo");
-        modelo.addColumn("Marca dispositivo");
-        modelo.addColumn("Id persona registro");
-        modelo.addColumn("Nombre persona");
-        modelo.addColumn("Apellido persona");
-        modelo.addColumn("Tipo dispositivo");
-        modelo.addColumn("Fecha Ingreso");
-        modelo.addColumn("Fecha salida");
-        
-        this.jTextField1.requestFocus();
-        ConsultasVigilante.modificar.setModel(modelo);
-         ser = jTextField1.getText();
-        try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select dispositivo.serial_dispositivo,dispositivo.Marca_dispositivo,ingreso_dispositivo.id_persona_ing,\n" +
-"persona.nombre_persona,\n" +
-"persona.apellido_persona,\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida\n" +
-"\n" +
-"from dispositivo \n" +
-"inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
-" \n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-"\n" +
-"where dispositivo.serial_dispositivo = '"+ser+"' order by dispositivo.serial_dispositivo");
-            
-            while(resultado.next()){
-                code[0] = resultado.getString("serial_dispositivo");
-                code[1] = resultado.getString("marca_dispositivo");
-                code[2] = resultado.getString("id_persona_ing");
-                code[3] = resultado.getString("nombre_persona");
-                code[4] = resultado.getString("apellido_persona");
-                code[5] = resultado.getString("tipo_dispositivo"); 
-                code[6] = resultado.getString("Fecha_ingreso");
-                code[7] = resultado.getString("Fecha_salida");
-
-                modelo.addRow(code);
-            }
-            ConsultasVigilante.modificar.setModel(modelo);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        //desde aqui empieza la consulta en caso de que no se digite nada en el campo
-        if(jTextField1.getText().equals("")){
-            try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select dispositivo.serial_dispositivo,dispositivo.Marca_dispositivo,ingreso_dispositivo.id_persona_ing,\n" +
-"persona.nombre_persona,\n" +
-"persona.apellido_persona,\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida\n" +
-"\n" +
-"from dispositivo \n" +
-"inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
-" \n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-"\n" +
-"where dispositivo.serial_dispositivo = dispositivo.Serial_dispositivo order by dispositivo.serial_dispositivo");
-            while(resultado.next()){
-                code[0] = resultado.getString("serial_dispositivo");
-                code[1] = resultado.getString("Marca_dispositivo");
-                code[2] = resultado.getString("id_persona_ing");   
-                code[3] = resultado.getString("nombre_persona");
-                code[4] = resultado.getString("apellido_persona");
-                code[5] = resultado.getString("tipo_dispositivo");
-                code[6] = resultado.getString("Fecha_ingreso");
-                code[7] = resultado.getString("Fecha_salida");
-                modelo.addRow(code);
-            }
-            ConsultasVigilante.modificar.setModel(modelo);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        }
-        break;
-// FIN OPCION FUERA DE USO        
-        
-     //IMPORTANTE TERCER CASE   
-    //Aqui empieza el tercer case, este es para el numero telefonico de la persona    
-    case "Ficha":
-        //JOptionPane.showMessageDialog(null, "Acaba de seleccionar el telefono","Mensaje",JOptionPane.OK_OPTION);
-        String fic;
-        String phone[]= new String[11];
-        DefaultTableModel phonet = new DefaultTableModel();
-       
-        
-        phonet.addColumn("Ficha");
-        phonet.addColumn("Nombre");
-        phonet.addColumn("Apellido");
-        phonet.addColumn("Serial dispositivo");
-        phonet.addColumn("Marca dispositivo");
-        phonet.addColumn("Tipo dispositivo");
-        //phonet.addColumn("Id vigilante");
-        phonet.addColumn("Fecha Ingreso");
-        phonet.addColumn("Fecha salida");
-        //phonet.addColumn("Fecha registro");
-
-        
-
-        ConsultasVigilante.modificar.setModel(phonet);
-         fic = jTextField1.getText();
-        try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select persona.ficha_persona,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
-"\n" +
-"dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo \n" +
-"inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
-" \n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-" \n" +
-"where persona.ficha_persona = "+fic+" order by persona.Ficha_persona;");
-            while(resultado.next()){
-                //phone[0] = resultado.getString("id_persona_ing");
-                //phone[1] = resultado.getString("Nombre_persona");
-                
-                phone[0] = resultado.getString("ficha_persona");
-                phone[1] = resultado.getString("nombre_persona");
-                phone[2] = resultado.getString("apellido_persona");
-                phone[3] = resultado.getString("serial_dispositivo");
-                phone[4] = resultado.getString("marca_dispositivo");
-                phone[5] = resultado.getString("tipo_dispositivo");
-                //phone[6] = resultado.getString("Modelo_dispositivo");
-                //phone[7] = resultado.getString("id_vigilante");
-                phone[6] = resultado.getString("fecha_ingreso");
-                phone[7] = resultado.getString("Fecha_salida");
-                //phone[10] = resultado.getString("Fecha_registro");
-                phonet.addRow(phone);
-            }
-            ConsultasVigilante.modificar.setModel(phonet);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        if(jTextField1.getText().equals("")){
-            try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select persona.ficha_persona,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
-"\n" +
-"dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo \n" +
-"inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
-" \n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-" \n" +
-"where persona.ficha_persona = persona.Ficha_persona order by persona.Ficha_persona;"); 
-            while(resultado.next()){
-                
-                phone[0] = resultado.getString("ficha_persona");
-                phone[1] = resultado.getString("nombre_persona");
-                phone[2] = resultado.getString("apellido_persona");
-                phone[3] = resultado.getString("serial_dispositivo");
-                phone[4] = resultado.getString("marca_dispositivo");
-                phone[5] = resultado.getString("tipo_dispositivo");
-                //phone[6] = resultado.getString("Modelo_dispositivo");
-                //phone[7] = resultado.getString("id_vigilante");
-                phone[6] = resultado.getString("fecha_ingreso");
-                phone[7] = resultado.getString("Fecha_salida");
-                //phone[10] = resultado.getString("Fecha_registro");
-                phonet.addRow(phone);
-                
-                              
-                phonet.addRow(phone);
-            }
-            ConsultasVigilante.modificar.setModel(phonet);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        }
-        break;
-     
-    //IMPORTANTE CUARTO CASE    
-    //Aqui arranca el cuarto case, este es para la identificacion    
-    case "Identificacion":
-        String datoid;
-        String identi[]= new String[11];
-        DefaultTableModel idtable = new DefaultTableModel();
-                
-        idtable.addColumn("Identificacion");
-        idtable.addColumn("Nombre");
-        idtable.addColumn("Apellido");
-        //idtable.addColumn("Telefono");
-        idtable.addColumn("Serial dispositivo");
-        idtable.addColumn("Tipo dispositivo");
-        //idtable.addColumn("Modelo dispositivo");
-        //idtable.addColumn("Id vigilante");
-        idtable.addColumn("Fecha Ingreso");
-        idtable.addColumn("Fecha salida");
-        //idtable.addColumn("Fecha registro");
-        
-
-        ConsultasVigilante.modificar.setModel(idtable);
-         datoid = jTextField1.getText();
-        try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
-"\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
-"\n" +
-"from dispositivo inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
-" \n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-" \n" +
-"where ingreso_dispositivo.id_persona_ing = "+datoid+" order by ingreso_dispositivo.Id_persona_ing;");
-            while(resultado.next()){
-                identi[0] = resultado.getString("id_persona_ing");
-                identi[1] = resultado.getString("nombre_persona");
-                identi[2] = resultado.getString("apellido_persona");
-                //identi[3] = resultado.getString("Telefono_persona");
-                identi[3] = resultado.getString("serial_dispositivo");
-                identi[4] = resultado.getString("tipo_dispositivo");
-                //identi[6] = resultado.getString("Modelo_dispositivo");
-                //identi[7] = resultado.getString("id_vigilante");
-                identi[5] = resultado.getString("Fecha_ingreso");
-                identi[6] = resultado.getString("Fecha_salida");
-                //identi[10] = resultado.getString("Fecha_registro");
-                idtable.addRow(identi);
-            }
-            ConsultasVigilante.modificar.setModel(idtable);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        if(jTextField1.getText().equals("")){
-             try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
-"\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
-"\n" +
-"from dispositivo inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
-" \n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
-" \n" +
-"where ingreso_dispositivo.id_persona_ing = ingreso_dispositivo.Id_persona_ing order by ingreso_dispositivo.Id_persona_ing;");
-            while(resultado.next()){
-                 identi[0] = resultado.getString("id_persona_ing");
-                 identi[1] = resultado.getString("nombre_persona");
-                 identi[2] = resultado.getString("apellido_persona");
-                //identi[3] = resultado.getString("Telefono_persona");
-                 identi[3] = resultado.getString("serial_dispositivo");
-                 identi[4] = resultado.getString("tipo_dispositivo");
-                //identi[6] = resultado.getString("Modelo_dispositivo");
-                //identi[7] = resultado.getString("id_vigilante");
-                //identi[8] = resultado.getString("Fecha_registro");
-                 identi[5] = resultado.getString("Fecha_ingreso");
-                 identi[6] = resultado.getString("Fecha_salida");
-                
-                idtable.addRow(identi);
-            }
-            ConsultasVigilante.modificar.setModel(idtable);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        }
-        break;
-        
-        //AQUI EMPIEZA EL CASO DE LA FECHA
-        //IMPORTANTE
-           case "Fecha Ingreso":
-        String fec;
-        String fe[]= new String[11];
-        DefaultTableModel fecha = new DefaultTableModel();
-                
-        fecha.addColumn("Identificacion");
-        fecha.addColumn("Nombre");
-        fecha.addColumn("Apellido");
-        //fecha.addColumn("Telefono");
-        fecha.addColumn("Serial dispositivo");
-        fecha.addColumn("Tipo dispositivo");
-        //fecha.addColumn("Modelo dispositivo");
-        //fecha.addColumn("Id vigilante");
-        fecha.addColumn("Fecha Ingreso");
-        fecha.addColumn("Fecha salida");
-        //fecha.addColumn("Fecha registro");
-        
-
-        ConsultasVigilante.modificar.setModel(fecha);
-         fec = jTextField1.getText();
-        try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
-"dispositivo.serial_dispositivo,\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
-"ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo \n" +
-"inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
-"\n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
-"where\n" +
-" ingreso_dispositivo.Fecha_ingreso like '%"+fec+"%'\n" +
-"order by ingreso_dispositivo.Fecha_ingreso asc");
-            while(resultado.next()){
-                fe[0] = resultado.getString("Id_persona_ing");
-                fe[1] = resultado.getString("nombre_persona");
-                fe[2] = resultado.getString("apellido_persona");
-                //fe[3] = resultado.getString("Telefono_persona");
-                fe[3] = resultado.getString("Serial_dispositivo");
-                fe[4] = resultado.getString("tipo_dispositivo");
-                //fe[6] = resultado.getString("Modelo_dispositivo");
-                //fe[7] = resultado.getString("id_vigilante");
-                fe[5] = resultado.getString("Fecha_ingreso");
-                fe[6] = resultado.getString("Fecha_salida");
-                //fe[10] = resultado.getString("Fecha_registro");
-                fecha.addRow(fe);
-            }
-            ConsultasVigilante.modificar.setModel(fecha);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        if(jTextField1.getText().equals("")){
-             try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
-"dispositivo.serial_dispositivo,\n" +
-"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
-"ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo \n" +
-"inner join tipo_dispositivo \n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
-"\n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
-"where\n" +
-" ingreso_dispositivo.Fecha_ingreso like ingreso_dispositivo.Fecha_ingreso\n" +
-"order by ingreso_dispositivo.Fecha_ingreso asc");
-            while(resultado.next()){
-                 fe[0] = resultado.getString("Id_persona_ing");
-                fe[1] = resultado.getString("nombre_persona");
-                fe[2] = resultado.getString("apellido_persona");
-                //fe[3] = resultado.getString("Telefono_persona");
-                fe[3] = resultado.getString("Serial_dispositivo");
-                fe[4] = resultado.getString("tipo_dispositivo");
-                //fe[6] = resultado.getString("Modelo_dispositivo");
-                //fe[7] = resultado.getString("id_vigilante");
-                //fe[8] = resultado.getString("Fecha_registro");
-                fe[5] = resultado.getString("Fecha_ingreso");
-                fe[6] = resultado.getString("Fecha_salida");
-                
-                fecha.addRow(fe);
-            }
-            ConsultasVigilante.modificar.setModel(fecha);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        }
-        break;
-        
-        //CASO DE FECHA DE SALIDA
-          case "Fecha Salida":
-        String fecs;
-        String fes[]= new String[11];
-        DefaultTableModel fechas = new DefaultTableModel();
-        
-                
-        fechas.addColumn("Identificacion");
-        fechas.addColumn("Nombre");
-        fechas.addColumn("Apellido");
-        //fechas.addColumn("Telefono");
-        fechas.addColumn("Serial dispositivo");
-        fechas.addColumn("Marca dispositivo");
-        fechas.addColumn("Tipo dispositivo");
-        //fechas.addColumn("Id vigilante");
-        fechas.addColumn("Fecha Ingreso");
-        fechas.addColumn("Fecha salida");
-        //fechas.addColumn("Fecha registro");
-        
-
-        ConsultasVigilante.modificar.setModel(fechas);
-         fecs = jTextField1.getText();
-        try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
-"\n" +
-"dispositivo.serial_dispositivo,dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
-"\n" +
-"ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo inner join tipo_dispositivo \n" +
-"\n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
-"\n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
-"where\n" +
-" ingreso_dispositivo.Fecha_salida like '%"+fecs+"%'\n" +
-"order by ingreso_dispositivo.Fecha_salida asc");
-            while(resultado.next()){
-                fes[0] = resultado.getString("id_persona_ing");
-                fes[1] = resultado.getString("nombre_persona");
-                fes[2] = resultado.getString("apellido_persona");
-                //fes[3] = resultado.getString("Telefono_persona");
-                fes[3] = resultado.getString("Serial_dispositivo");
-                fes[4] = resultado.getString("Marca_dispositivo");
-                fes[5] = resultado.getString("tipo_dispositivo");
-                //fes[7] = resultado.getString("id_vigilante");
-                fes[6] = resultado.getString("Fecha_ingreso");
-                fes[7] = resultado.getString("Fecha_salida");
-                //fes[10] = resultado.getString("Fecha_registro");
-                fechas.addRow(fes);
-            }
-            ConsultasVigilante.modificar.setModel(fechas);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        if(jTextField1.getText().equals("")){
-             try{
-
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
-"\n" +
-"dispositivo.serial_dispositivo,dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
-"\n" +
-"ingreso_dispositivo.Fecha_salida \n" +
-"from dispositivo inner join tipo_dispositivo \n" +
-"\n" +
-"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
-"\n" +
-"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
-"\n" +
-"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
-"where\n" +
-" ingreso_dispositivo.Fecha_salida like ingreso_dispositivo.Fecha_salida\n" +
-"order by ingreso_dispositivo.Fecha_salida asc");
-            while(resultado.next()){
-                 fes[0] = resultado.getString("id_persona_ing");
-                 fes[1] = resultado.getString("nombre_persona");
-                fes[2] = resultado.getString("apellido_persona");
-                //fes[3] = resultado.getString("Telefono_persona");
-                fes[3] = resultado.getString("serial_dispositivo");
-                fes[4] = resultado.getString("marca_dispositivo");
-                fes[5] = resultado.getString("tipo_dispositivo");
-                //fes[7] = resultado.getString("id_vigilante");
-                //fes[8] = resultado.getString("Fecha_registro");
-                fes[6] = resultado.getString("Fecha_ingreso");
-                fes[7] = resultado.getString("Fecha_salida");
-                
-                fechas.addRow(fes);
-            }
-            ConsultasVigilante.modificar.setModel(fechas);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        };
-        }
-        break;
-    
-//        IMPORTANTE QUINTO CASE
-//       Aqui arranca el quinto case 
-//    case "Marca Dispositivo":  
-//        JOptionPane.showMessageDialog(null, "Acaba de seleccionar la marca del dispositivo","Mensaje",JOptionPane.OK_OPTION);
-//        String marcadisp;
-//        String mdisp[]= new String[11];
-//        DefaultTableModel marca = new DefaultTableModel();
-//              
-//        marca.addColumn("Identificacion");
-//        marca.addColumn("Nombre");
-//        marca.addColumn("Apellido");
-//        marca.addColumn("Telefono");
-//        marca.addColumn("Marca dispositivo");
-//        marca.addColumn("Serial dispositivo");
-//        marca.addColumn("Modelo dispositivo");
-//        marca.addColumn("Id vigilante");
-//        marca.addColumn("Fecha Ingreso");
-//        marca.addColumn("Fecha salida");
-//        marca.addColumn("Fecha registro");
-//        
-//
-//        ConsultasVigilante.jTable1.setModel(marca);
-//         marcadisp = jTextField1.getText();
-//        try{
-//            
-//            
-//
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-//            java.sql.Statement estado = con.createStatement();
-//            ResultSet resultado = estado.executeQuery("select Marca_dispositivo, dispositivo.Serial_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo where Marca_dispositivo='"+marcadisp+"' order by Marca_dispositivo asc");
-//            while(resultado.next()){
-//                mdisp[0] = resultado.getString("id_persona_ing");
-//                mdisp[1] = resultado.getString("Nombre_persona");
-//                mdisp[2] = resultado.getString("Apellido_persona");
-//                mdisp[3] = resultado.getString("Telefono_persona");
-//                mdisp[0] = resultado.getString("Marca_dispositivo");
-//                mdisp[1] = resultado.getString("Serial_dispositivo");
-//                mdisp[6] = resultado.getString("Modelo_dispositivo");
-//                mdisp[7] = resultado.getString("id_vigilante");
-//                mdisp[2] = resultado.getString("fecha_ingreso");
-//                mdisp[3] = resultado.getString("fecha_salida");
-//                mdisp[10] = resultado.getString("Fecha_registro");
-//
-//                marca.addRow(mdisp);
-//            }
-//            ConsultasVigilante.jTable1.setModel(marca);
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        };
-//        if(jTextField1.getText().equals("")){
-//          try{
-//
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-//            java.sql.Statement estado = con.createStatement();
-//            ResultSet resultado = estado.executeQuery("select Marca_dispositivo,dispositivo.Serial_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo order by Marca_dispositivo asc");
-//            while(resultado.next()){
-//                mdisp[0] = resultado.getString("Marca_dispositivo");
-//                mdisp[1] = resultado.getString("Modelo_dispositivo");
-//                mdisp[1] = resultado.getString("Serial_dispositivo");
-//                mdisp[3] = resultado.getString("id_persona_ing");
-//                mdisp[4] = resultado.getString("Nombre_persona");
-//                mdisp[5] = resultado.getString("Apellido_persona");
-//                mdisp[6] = resultado.getString("Telefono_persona");              
-//                mdisp[7] = resultado.getString("id_vigilante");
-//                mdisp[2] = resultado.getString("fecha_ingreso");
-//                mdisp[3] = resultado.getString("fecha_salida");
-//                mdisp[10] = resultado.getString("Fecha_registro");
-//
-//                marca.addRow(mdisp);
-//            }
-//            ConsultasVigilante.jTable1.setModel(marca);
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        };  
-//        }
-//        break;
-//        
-//        IMPORTANTE SEXTO CASE
-//        Aqui arranca el sexto case
-//    case "Serial Dispositivo":
-//        JOptionPane.showMessageDialog(null, "Acaba de seleccionar el serial del dispositivo","Mensaje",JOptionPane.OK_OPTION);
-//        String serialdisp;
-//        String sdisp[]= new String[11];
-//        DefaultTableModel serial = new DefaultTableModel();
-//                
-//      	serial.addColumn("Identificacion");
-//        serial.addColumn("Nombre");
-//        serial.addColumn("Apellido");
-//        serial.addColumn("Telefono");
-//        serial.addColumn("Serial dispositivo");
-//        serial.addColumn("Marca dispositivo");
-//        serial.addColumn("Modelo dispositivo");
-//        serial.addColumn("Id vigilante");
-//        serial.addColumn("Fecha Ingreso");
-//        serial.addColumn("Fecha salida");
-//        serial.addColumn("Fecha registro");
-//
-//        
-//
-//        ConsultasVigilante.jTable1.setModel(serial);
-//         serialdisp = jTextField1.getText();
-//        try{
-//
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-//            java.sql.Statement estado = con.createStatement();
-//            ResultSet resultado = estado.executeQuery("select dispositivo.Serial_dispositivo,Modelo_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo where dispositivo.Serial_dispositivo = '"+serialdisp+"'order by dispositivo.Serial_dispositivo asc");
-//            while(resultado.next()){
-//                sdisp[0] = resultado.getString("id_persona_ing");
-//                sdisp[1] = resultado.getString("Nombre_persona");
-//                sdisp[2] = resultado.getString("Apellido_persona");
-//                sdisp[3] = resultado.getString("Telefono_persona");
-//                sdisp[0] = resultado.getString("Serial_dispositivo");
-//                sdisp[5] = resultado.getString("Marca_dispositivo");
-//                sdisp[1] = resultado.getString("Modelo_dispositivo");
-//                sdisp[7] = resultado.getString("id_vigilante");
-//                sdisp[2] = resultado.getString("fecha_ingreso");
-//                sdisp[3] = resultado.getString("fecha_salida");
-//                sdisp[10] = resultado.getString("Fecha_registro");
-//                serial.addRow(sdisp);
-//            }
-//            ConsultasVigilante.jTable1.setModel(serial);
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        };
-//        if(jTextField1.getText().equals("")){
-//         try{
-//
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-//            java.sql.Statement estado = con.createStatement();
-//            ResultSet resultado = estado.executeQuery("select dispositivo.Serial_dispositivo,Modelo_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo order by dispositivo.Serial_dispositivo asc");
-//            while(resultado.next()){
-//                sdisp[0] = resultado.getString("Serial_dispositivo");
-//                sdisp[1] = resultado.getString("Marca_dispositivo");
-//                sdisp[1] = resultado.getString("Modelo_dispositivo");
-//                sdisp[3] = resultado.getString("id_persona_ing");
-//                sdisp[4] = resultado.getString("Nombre_persona");
-//                sdisp[5] = resultado.getString("Apellido_persona");
-//                sdisp[6] = resultado.getString("Telefono_persona");
-//                sdisp[7] = resultado.getString("id_vigilante");
-//                sdisp[2] = resultado.getString("fecha_ingreso");
-//                sdisp[3] = resultado.getString("fecha_salida");
-//                sdisp[10] = resultado.getString("Fecha_registro");
-//                serial.addRow(sdisp);
-//            }
-//            ConsultasVigilante.jTable1.setModel(serial);
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        };   
-//        }
-//        
-//        break;
-//    
-//    IMPORTANTE SEPTIMO CASE    
-//    Aqui arranca el septimo case    
-//    case "Modelo Dispositivo":
-//      JOptionPane.showMessageDialog(null, "Acaba de seleccionar el modelo del dispositivo","Mensaje",JOptionPane.OK_OPTION); 
-//      String modeldisp;
-//        String modisp[]= new String[11];
-//        DefaultTableModel mode = new DefaultTableModel();
-//                
-//	mode.addColumn("Identificacion");
-//        mode.addColumn("Nombre");
-//        mode.addColumn("Apellido");
-//        mode.addColumn("Telefono");
-//        mode.addColumn("Modelo dispositivo");
-//        mode.addColumn("Serial dispositivo");
-//        mode.addColumn("Marca dispositivo");
-//        mode.addColumn("Id vigilante");
-//        mode.addColumn("Fecha Ingreso");
-//        mode.addColumn("Fecha salida");
-//        mode.addColumn("Fecha registro");
-//       
-//        
-//
-//        ConsultasVigilante.jTable1.setModel(mode);
-//         modeldisp = jTextField1.getText();
-//        try{
-//
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-//            java.sql.Statement estado = con.createStatement();
-//            ResultSet resultado = estado.executeQuery("select Modelo_dispositivo,dispositivo.Serial_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo where Modelo_dispositivo = '"+modeldisp+"' order by Modelo_dispositivo asc");
-//            while(resultado.next()){
-//                modisp[0] = resultado.getString("id_persona_ing");
-//                modisp[1] = resultado.getString("Nombre_persona");
-//                modisp[2] = resultado.getString("Apellido_persona");
-//                modisp[3] = resultado.getString("Telefono_persona");
-//                 modisp[0] = resultado.getString("Modelo_dispositivo");
-//                modisp[1] = resultado.getString("Serial_dispositivo");
-//                modisp[5] = resultado.getString("Marca_dispositivo");
-//                modisp[7] = resultado.getString("id_vigilante");
-//                modisp[2] = resultado.getString("fecha_ingreso");
-//                modisp[3] = resultado.getString("fecha_salida");
-//                modisp[10] = resultado.getString("Fecha_registro");
-//                mode.addRow(modisp);
-//            }
-//            ConsultasVigilante.jTable1.setModel(mode);
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        };
-//        if(jTextField1.getText().equals("")){
-//          try{
-//
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-//            java.sql.Statement estado = con.createStatement();
-//            ResultSet resultado = estado.executeQuery("select Modelo_dispositivo,dispositivo.Serial_dispositivo,ingreso_dispositivo.fecha_ingreso,ingreso_dispositivo.fecha_salida from dispositivo inner join persona on persona.Id_persona_reg = dispositivo.Id_persona_reg left join ingreso_dispositivo on ingreso_dispositivo.Serial_dispositivo = dispositivo.Serial_dispositivo order by Modelo_dispositivo asc");
-//            while(resultado.next()){
-//                modisp[0] = resultado.getString("Modelo_dispositivo");
-//                modisp[1] = resultado.getString("Marca_dispositivo");
-//                modisp[1] = resultado.getString("Serial_dispositivo");
-//                modisp[3] = resultado.getString("id_persona_ing");
-//                modisp[4] = resultado.getString("Nombre_persona");
-//                modisp[5] = resultado.getString("Apellido_persona");
-//                modisp[6] = resultado.getString("Telefono_persona");            
-//                modisp[7] = resultado.getString("id_vigilante");
-//                modisp[2] = resultado.getString("fecha_ingreso");
-//                modisp[3] = resultado.getString("fecha_salida");
-//                modisp[10] = resultado.getString("Fecha_registro");
-//                mode.addRow(modisp);
-//            }
-//            ConsultasVigilante.jTable1.setModel(mode);
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        };   
-//        }
-//      break;
-//        
-//}
-
-
-
-}
-
+consultar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -1090,6 +254,24 @@ combo = this.jComboBox1.getSelectedItem().toString();
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimActionPerformed
 
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            InicioVigilante ConsultasVigilante = new InicioVigilante();
+            this.setVisible(false);
+            ConsultasVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+           consultar();
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -1130,13 +312,626 @@ combo = this.jComboBox1.getSelectedItem().toString();
         });
     }
     
+    private void consultar(){
+        String combo;
+
+combo = this.jComboBox1.getSelectedItem().toString();
+
+switch (combo){
+    //IMPORTANTE PRIMER CASE
+    //Este primer case es para consulta el nombre de un usuario del sistema
+    case "Nombre":
+        this.jTextField1.requestFocus();
+        String name;
+        String nombre[]= new String[11];
+        DefaultTableModel model = new DefaultTableModel();
+        
+        //model.addColumn("Identificacion");
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");
+        model.addColumn("Identificacion");
+        model.addColumn("Serial dispositivo");
+        model.addColumn("Tipo dispositivo");
+        //model.addColumn("Modelo dispositivo");
+        //model.addColumn("Id vigilante");
+        model.addColumn("Fecha Ingreso");
+        model.addColumn("Fecha salida");
+        //model.addColumn("Fecha registro");
+        
+
+
+        ConsultasVigilante.modificar.setModel(model);
+        name = jTextField1.getText();
+        try{
+
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select persona.nombre_persona,persona.apellido_persona,ingreso_dispositivo.id_persona_ing,dispositivo.serial_dispositivo,\n" +
+"\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
+"\n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+" \n" +
+"where persona.Nombre_persona = '"+name+"' order by persona.nombre_persona;");
+                while(resultado.next()){
+                //nombre[0] = resultado.getString("id_persona_ing");
+                nombre[0] = resultado.getString("nombre_persona");
+                nombre[1] = resultado.getString("apellido_persona");
+                nombre[2] = resultado.getString("id_persona_ing");
+                nombre[3] = resultado.getString("serial_dispositivo");
+                nombre[4] = resultado.getString("tipo_dispositivo");
+                //nombre[6] = resultado.getString("Modelo_dispositivo");
+                //nombre[7] = resultado.getString("id_vigilante");
+                nombre[5] = resultado.getString("fecha_ingreso");
+                nombre[6] = resultado.getString("fecha_salida");
+                //nombre[10] = resultado.getString("Fecha_registro");
+                model.addRow(nombre);
+            }
+            ConsultasVigilante.modificar.setModel(model);
+        }catch(Exception e){
+            System.out.println(e.toString()); //desde aqui empieza la consulta en caso de que no se digite nada en el campo
+        };
+        
+        if(jTextField1.getText().equals("")){
+      
+        try{
+            
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select persona.nombre_persona,persona.apellido_persona,ingreso_dispositivo.id_persona_ing,dispositivo.serial_dispositivo,\n" +
+"\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
+"\n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+" \n" +
+"where persona.Nombre_persona = persona.Nombre_persona order by persona.nombre_persona;");
+            //ResultSet resultado = estado.executeQuery("select distinct persona.*, dispositivo.Serial_dispositivo, dispositivo.Marca_dispositivo from persona,dispositivo where persona.Nombre_persona ='"+name+"'");
+                while(resultado.next()){
+                
+                nombre[0] = resultado.getString("nombre_persona");
+                nombre[1] = resultado.getString("apellido_persona");
+                nombre[2] = resultado.getString("id_persona_ing");
+                //nombre1[3] = resultado.getString("Telefono_persona");
+                nombre[3] = resultado.getString("serial_dispositivo");
+                nombre[4] = resultado.getString("tipo_dispositivo");
+                //nombre1[6] = resultado.getString("Modelo_dispositivo");
+                //nombre1[7] = resultado.getString("id_vigilante");
+                //nombre1[8] = resultado.getString("Fecha_registro");
+                nombre[5] = resultado.getString("fecha_ingreso");
+                nombre[6] = resultado.getString("fecha_salida");
+                
+                model.addRow(nombre);
+                
+            }
+            ConsultasVigilante.modificar.setModel(model);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        }
+        break;
+
+        
+        
+        
+      //INICIO OPCION FUERA DE USO  
+    //IMPORTANTE SEGUNDO CASE    
+    //Aqui empieza el segundo case, este es para el apellido    
+    case "Serial":
+        
+        String ser;
+        String code[]= new String[11];
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Serial dispositivo");
+        modelo.addColumn("Marca dispositivo");
+        modelo.addColumn("Id persona registro");
+        modelo.addColumn("Nombre persona");
+        modelo.addColumn("Apellido persona");
+        modelo.addColumn("Tipo dispositivo");
+        modelo.addColumn("Fecha Ingreso");
+        modelo.addColumn("Fecha salida");
+        
+        this.jTextField1.requestFocus();
+        ConsultasVigilante.modificar.setModel(modelo);
+         ser = jTextField1.getText();
+        try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select dispositivo.serial_dispositivo,dispositivo.Marca_dispositivo,ingreso_dispositivo.id_persona_ing,\n" +
+"persona.nombre_persona,\n" +
+"persona.apellido_persona,\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida\n" +
+"\n" +
+"from dispositivo \n" +
+"inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
+" \n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+"\n" +
+"where dispositivo.serial_dispositivo = '"+ser+"' order by dispositivo.serial_dispositivo");
+            
+            while(resultado.next()){
+                code[0] = resultado.getString("serial_dispositivo");
+                code[1] = resultado.getString("marca_dispositivo");
+                code[2] = resultado.getString("id_persona_ing");
+                code[3] = resultado.getString("nombre_persona");
+                code[4] = resultado.getString("apellido_persona");
+                code[5] = resultado.getString("tipo_dispositivo"); 
+                code[6] = resultado.getString("Fecha_ingreso");
+                code[7] = resultado.getString("Fecha_salida");
+
+                modelo.addRow(code);
+            }
+            ConsultasVigilante.modificar.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        //desde aqui empieza la consulta en caso de que no se digite nada en el campo
+        if(jTextField1.getText().equals("")){
+            try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select dispositivo.serial_dispositivo,dispositivo.Marca_dispositivo,ingreso_dispositivo.id_persona_ing,\n" +
+"persona.nombre_persona,\n" +
+"persona.apellido_persona,\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida\n" +
+"\n" +
+"from dispositivo \n" +
+"inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
+" \n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+"\n" +
+"where dispositivo.serial_dispositivo = dispositivo.Serial_dispositivo order by dispositivo.serial_dispositivo");
+            while(resultado.next()){
+                code[0] = resultado.getString("serial_dispositivo");
+                code[1] = resultado.getString("Marca_dispositivo");
+                code[2] = resultado.getString("id_persona_ing");   
+                code[3] = resultado.getString("nombre_persona");
+                code[4] = resultado.getString("apellido_persona");
+                code[5] = resultado.getString("tipo_dispositivo");
+                code[6] = resultado.getString("Fecha_ingreso");
+                code[7] = resultado.getString("Fecha_salida");
+                modelo.addRow(code);
+            }
+            ConsultasVigilante.modificar.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        }
+        break;
+// FIN OPCION FUERA DE USO        
+        
+     //IMPORTANTE TERCER CASE   
+    //Aqui empieza el tercer case, este es para el numero telefonico de la persona    
+    case "Ficha":
+        //JOptionPane.showMessageDialog(null, "Acaba de seleccionar el telefono","Mensaje",JOptionPane.OK_OPTION);
+        String fic;
+        String phone[]= new String[11];
+        DefaultTableModel phonet = new DefaultTableModel();
+       
+        
+        phonet.addColumn("Ficha");
+        phonet.addColumn("Nombre");
+        phonet.addColumn("Apellido");
+        phonet.addColumn("Serial dispositivo");
+        phonet.addColumn("Marca dispositivo");
+        phonet.addColumn("Tipo dispositivo");
+        //phonet.addColumn("Id vigilante");
+        phonet.addColumn("Fecha Ingreso");
+        phonet.addColumn("Fecha salida");
+        //phonet.addColumn("Fecha registro");
+
+        
+
+        ConsultasVigilante.modificar.setModel(phonet);
+         fic = jTextField1.getText();
+        try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select persona.ficha_persona,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
+"\n" +
+"dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo \n" +
+"inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
+" \n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+" \n" +
+"where persona.ficha_persona = "+fic+" order by persona.Ficha_persona;");
+            while(resultado.next()){
+                //phone[0] = resultado.getString("id_persona_ing");
+                //phone[1] = resultado.getString("Nombre_persona");
+                
+                phone[0] = resultado.getString("ficha_persona");
+                phone[1] = resultado.getString("nombre_persona");
+                phone[2] = resultado.getString("apellido_persona");
+                phone[3] = resultado.getString("serial_dispositivo");
+                phone[4] = resultado.getString("marca_dispositivo");
+                phone[5] = resultado.getString("tipo_dispositivo");
+                //phone[6] = resultado.getString("Modelo_dispositivo");
+                //phone[7] = resultado.getString("id_vigilante");
+                phone[6] = resultado.getString("fecha_ingreso");
+                phone[7] = resultado.getString("Fecha_salida");
+                //phone[10] = resultado.getString("Fecha_registro");
+                phonet.addRow(phone);
+            }
+            ConsultasVigilante.modificar.setModel(phonet);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        if(jTextField1.getText().equals("")){
+            try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select persona.ficha_persona,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
+"\n" +
+"dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo \n" +
+"inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
+" \n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+" \n" +
+"where persona.ficha_persona = persona.Ficha_persona order by persona.Ficha_persona;"); 
+            while(resultado.next()){
+                
+                phone[0] = resultado.getString("ficha_persona");
+                phone[1] = resultado.getString("nombre_persona");
+                phone[2] = resultado.getString("apellido_persona");
+                phone[3] = resultado.getString("serial_dispositivo");
+                phone[4] = resultado.getString("marca_dispositivo");
+                phone[5] = resultado.getString("tipo_dispositivo");
+                //phone[6] = resultado.getString("Modelo_dispositivo");
+                //phone[7] = resultado.getString("id_vigilante");
+                phone[6] = resultado.getString("fecha_ingreso");
+                phone[7] = resultado.getString("Fecha_salida");
+                //phone[10] = resultado.getString("Fecha_registro");
+                phonet.addRow(phone);
+                
+                              
+                phonet.addRow(phone);
+            }
+            ConsultasVigilante.modificar.setModel(phonet);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        }
+        break;
+     
+    //IMPORTANTE CUARTO CASE    
+    //Aqui arranca el cuarto case, este es para la identificacion    
+    case "Identificacion":
+        String datoid;
+        String identi[]= new String[11];
+        DefaultTableModel idtable = new DefaultTableModel();
+                
+        idtable.addColumn("Identificacion");
+        idtable.addColumn("Nombre");
+        idtable.addColumn("Apellido");
+        //idtable.addColumn("Telefono");
+        idtable.addColumn("Serial dispositivo");
+        idtable.addColumn("Tipo dispositivo");
+        //idtable.addColumn("Modelo dispositivo");
+        //idtable.addColumn("Id vigilante");
+        idtable.addColumn("Fecha Ingreso");
+        idtable.addColumn("Fecha salida");
+        //idtable.addColumn("Fecha registro");
+        
+
+        ConsultasVigilante.modificar.setModel(idtable);
+         datoid = jTextField1.getText();
+        try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
+"\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
+"\n" +
+"from dispositivo inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
+" \n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+" \n" +
+"where ingreso_dispositivo.id_persona_ing = "+datoid+" order by ingreso_dispositivo.Id_persona_ing;");
+            while(resultado.next()){
+                identi[0] = resultado.getString("id_persona_ing");
+                identi[1] = resultado.getString("nombre_persona");
+                identi[2] = resultado.getString("apellido_persona");
+                //identi[3] = resultado.getString("Telefono_persona");
+                identi[3] = resultado.getString("serial_dispositivo");
+                identi[4] = resultado.getString("tipo_dispositivo");
+                //identi[6] = resultado.getString("Modelo_dispositivo");
+                //identi[7] = resultado.getString("id_vigilante");
+                identi[5] = resultado.getString("Fecha_ingreso");
+                identi[6] = resultado.getString("Fecha_salida");
+                //identi[10] = resultado.getString("Fecha_registro");
+                idtable.addRow(identi);
+            }
+            ConsultasVigilante.modificar.setModel(idtable);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        if(jTextField1.getText().equals("")){
+             try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,dispositivo.serial_dispositivo,\n" +
+"\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,ingreso_dispositivo.Fecha_salida \n" +
+"\n" +
+"from dispositivo inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo\n" +
+" \n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing\n" +
+" \n" +
+"where ingreso_dispositivo.id_persona_ing = ingreso_dispositivo.Id_persona_ing order by ingreso_dispositivo.Id_persona_ing;");
+            while(resultado.next()){
+                 identi[0] = resultado.getString("id_persona_ing");
+                 identi[1] = resultado.getString("nombre_persona");
+                 identi[2] = resultado.getString("apellido_persona");
+                //identi[3] = resultado.getString("Telefono_persona");
+                 identi[3] = resultado.getString("serial_dispositivo");
+                 identi[4] = resultado.getString("tipo_dispositivo");
+                //identi[6] = resultado.getString("Modelo_dispositivo");
+                //identi[7] = resultado.getString("id_vigilante");
+                //identi[8] = resultado.getString("Fecha_registro");
+                 identi[5] = resultado.getString("Fecha_ingreso");
+                 identi[6] = resultado.getString("Fecha_salida");
+                
+                idtable.addRow(identi);
+            }
+            ConsultasVigilante.modificar.setModel(idtable);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        }
+        break;
+        
+        //AQUI EMPIEZA EL CASO DE LA FECHA
+        //IMPORTANTE
+           case "Fecha Ingreso":
+        String fec;
+        String fe[]= new String[11];
+        DefaultTableModel fecha = new DefaultTableModel();
+                
+        fecha.addColumn("Identificacion");
+        fecha.addColumn("Nombre");
+        fecha.addColumn("Apellido");
+        //fecha.addColumn("Telefono");
+        fecha.addColumn("Serial dispositivo");
+        fecha.addColumn("Tipo dispositivo");
+        //fecha.addColumn("Modelo dispositivo");
+        //fecha.addColumn("Id vigilante");
+        fecha.addColumn("Fecha Ingreso");
+        fecha.addColumn("Fecha salida");
+        //fecha.addColumn("Fecha registro");
+        
+
+        ConsultasVigilante.modificar.setModel(fecha);
+         fec = jTextField1.getText();
+        try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
+"dispositivo.serial_dispositivo,\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
+"ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo \n" +
+"inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
+"\n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
+"where\n" +
+" ingreso_dispositivo.Fecha_ingreso like '%"+fec+"%'\n" +
+"order by ingreso_dispositivo.Fecha_ingreso asc");
+            while(resultado.next()){
+                fe[0] = resultado.getString("Id_persona_ing");
+                fe[1] = resultado.getString("nombre_persona");
+                fe[2] = resultado.getString("apellido_persona");
+                //fe[3] = resultado.getString("Telefono_persona");
+                fe[3] = resultado.getString("Serial_dispositivo");
+                fe[4] = resultado.getString("tipo_dispositivo");
+                //fe[6] = resultado.getString("Modelo_dispositivo");
+                //fe[7] = resultado.getString("id_vigilante");
+                fe[5] = resultado.getString("Fecha_ingreso");
+                fe[6] = resultado.getString("Fecha_salida");
+                //fe[10] = resultado.getString("Fecha_registro");
+                fecha.addRow(fe);
+            }
+            ConsultasVigilante.modificar.setModel(fecha);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        if(jTextField1.getText().equals("")){
+             try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
+"dispositivo.serial_dispositivo,\n" +
+"tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
+"ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo \n" +
+"inner join tipo_dispositivo \n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
+"\n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
+"where\n" +
+" ingreso_dispositivo.Fecha_ingreso like ingreso_dispositivo.Fecha_ingreso\n" +
+"order by ingreso_dispositivo.Fecha_ingreso asc");
+            while(resultado.next()){
+                 fe[0] = resultado.getString("Id_persona_ing");
+                fe[1] = resultado.getString("nombre_persona");
+                fe[2] = resultado.getString("apellido_persona");
+                //fe[3] = resultado.getString("Telefono_persona");
+                fe[3] = resultado.getString("Serial_dispositivo");
+                fe[4] = resultado.getString("tipo_dispositivo");
+                //fe[6] = resultado.getString("Modelo_dispositivo");
+                //fe[7] = resultado.getString("id_vigilante");
+                //fe[8] = resultado.getString("Fecha_registro");
+                fe[5] = resultado.getString("Fecha_ingreso");
+                fe[6] = resultado.getString("Fecha_salida");
+                
+                fecha.addRow(fe);
+            }
+            ConsultasVigilante.modificar.setModel(fecha);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        }
+        break;
+        
+        //CASO DE FECHA DE SALIDA
+          case "Fecha Salida":
+        String fecs;
+        String fes[]= new String[11];
+        DefaultTableModel fechas = new DefaultTableModel();
+        
+                
+        fechas.addColumn("Identificacion");
+        fechas.addColumn("Nombre");
+        fechas.addColumn("Apellido");
+        //fechas.addColumn("Telefono");
+        fechas.addColumn("Serial dispositivo");
+        fechas.addColumn("Marca dispositivo");
+        fechas.addColumn("Tipo dispositivo");
+        //fechas.addColumn("Id vigilante");
+        fechas.addColumn("Fecha Ingreso");
+        fechas.addColumn("Fecha salida");
+        //fechas.addColumn("Fecha registro");
+        
+
+        ConsultasVigilante.modificar.setModel(fechas);
+         fecs = jTextField1.getText();
+        try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
+"\n" +
+"dispositivo.serial_dispositivo,dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
+"\n" +
+"ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo inner join tipo_dispositivo \n" +
+"\n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
+"\n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
+"where\n" +
+" ingreso_dispositivo.Fecha_salida like '%"+fecs+"%'\n" +
+"order by ingreso_dispositivo.Fecha_salida asc");
+            while(resultado.next()){
+                fes[0] = resultado.getString("id_persona_ing");
+                fes[1] = resultado.getString("nombre_persona");
+                fes[2] = resultado.getString("apellido_persona");
+                //fes[3] = resultado.getString("Telefono_persona");
+                fes[3] = resultado.getString("Serial_dispositivo");
+                fes[4] = resultado.getString("Marca_dispositivo");
+                fes[5] = resultado.getString("tipo_dispositivo");
+                //fes[7] = resultado.getString("id_vigilante");
+                fes[6] = resultado.getString("Fecha_ingreso");
+                fes[7] = resultado.getString("Fecha_salida");
+                //fes[10] = resultado.getString("Fecha_registro");
+                fechas.addRow(fes);
+            }
+            ConsultasVigilante.modificar.setModel(fechas);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        if(jTextField1.getText().equals("")){
+             try{
+
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select ingreso_dispositivo.id_persona_ing,persona.nombre_persona,persona.apellido_persona,\n" +
+"\n" +
+"dispositivo.serial_dispositivo,dispositivo.marca_dispositivo,tipo_dispositivo.tipo_dispositivo,ingreso_dispositivo.Fecha_ingreso,\n" +
+"\n" +
+"ingreso_dispositivo.Fecha_salida \n" +
+"from dispositivo inner join tipo_dispositivo \n" +
+"\n" +
+"on dispositivo.Id_tipo_dispositivo = tipo_dispositivo.Id_tipo_dispositivo \n" +
+"\n" +
+"left join ingreso_dispositivo on dispositivo.Serial_dispositivo = ingreso_dispositivo.Serial_dispositivo \n" +
+"\n" +
+"inner join persona on persona.Id_persona_reg = ingreso_dispositivo.Id_persona_ing \n" +
+"where\n" +
+" ingreso_dispositivo.Fecha_salida like ingreso_dispositivo.Fecha_salida\n" +
+"order by ingreso_dispositivo.Fecha_salida asc");
+            while(resultado.next()){
+                 fes[0] = resultado.getString("id_persona_ing");
+                 fes[1] = resultado.getString("nombre_persona");
+                fes[2] = resultado.getString("apellido_persona");
+                //fes[3] = resultado.getString("Telefono_persona");
+                fes[3] = resultado.getString("serial_dispositivo");
+                fes[4] = resultado.getString("marca_dispositivo");
+                fes[5] = resultado.getString("tipo_dispositivo");
+                //fes[7] = resultado.getString("id_vigilante");
+                //fes[8] = resultado.getString("Fecha_registro");
+                fes[6] = resultado.getString("Fecha_ingreso");
+                fes[7] = resultado.getString("Fecha_salida");
+                
+                fechas.addRow(fes);
+            }
+            ConsultasVigilante.modificar.setModel(fechas);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        };
+        }
+        break;
+    }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem imprim;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

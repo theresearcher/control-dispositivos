@@ -1,3 +1,4 @@
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class RegistroSalida extends javax.swing.JFrame {
+    
 Date date = new Date();
 Conexion ctm = new Conexion();
 Connection reg = ctm.conexion();
@@ -22,10 +24,12 @@ String ser;
 String varn = null;
 String varn1;  
 private  static String cadena = "0123456789abcdefghijklmnopqrstuvwxyz";
-    public RegistroSalida() {
+    
+public RegistroSalida() {
         initComponents();
         this.jTextField1.requestFocus();
         this.setLocationRelativeTo(null);
+        jButton3.setEnabled(false);
     }
 
  
@@ -80,13 +84,19 @@ private  static String cadena = "0123456789abcdefghijklmnopqrstuvwxyz";
         getContentPane().add(jcMousePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 90));
 
         jButton2.setFont(new java.awt.Font("Myriad Pro", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/back 60.png"))); // NOI18N
         jButton2.setText("VOLVER");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, -1, -1));
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 679, 200, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Temas/-Barra Verde35% Azul 65%.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 660, 980, 90));
@@ -147,6 +157,11 @@ private  static String cadena = "0123456789abcdefghijklmnopqrstuvwxyz";
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 150, 50));
 
         jLabel16.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
@@ -174,6 +189,11 @@ private  static String cadena = "0123456789abcdefghijklmnopqrstuvwxyz";
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, -1, -1));
@@ -208,73 +228,7 @@ private  static String cadena = "0123456789abcdefghijklmnopqrstuvwxyz";
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(this.jTextField1.getText().length()== 0){
-               JOptionPane.showMessageDialog(null, "Ingrese un dato en el campo de texto para poder \n consultar su dispositivo", "Informacion", JOptionPane.OK_OPTION);
-           }
-        String serial; 
-  
- 
-        String reco1;
-        String reco2;
-        String reco3;
-        String reco4;
-        String reco5;
-        String reco6;
-//        String fentradaing;
-//        
-       DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-   fsalida = hourdateFormat.format(date);
-        serial = jTextField1.getText();
-        
-        try{
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = reg.createStatement();
-            ResultSet resultado = estado.executeQuery("select * from dispositivo where Serial_dispositivo = '"+serial+"'" );
-            
-                while(resultado.next()){
-                recoger = resultado.getString("Serial_dispositivo");
-                reco1 = resultado.getString("Marca_dispositivo");
-                reco2 = resultado.getString("Modelo_dispositivo");
-                reco3 = resultado.getString("Id_tipo_dispositivo");
-                reco4 = resultado.getString("Fecha_registro");
-                reco5 = resultado.getString("Id_vigilante");
-                
-                if(serial.equals(recoger)){
-                jLabel7.setText("Serial: "+recoger);
-                jLabel9.setText("Marca: "+reco1);
-                jLabel10.setText("Modelo: "+reco2);
-                jLabel12.setText("Tipo dispositivo: "+reco3);
-                jLabel11.setText("Fecha registro: "+reco4);
-                //jLabel8.setText("Identificacion Vigilante: "+reco5);
-                }
-                
-                
-            }
-           if(!serial.contentEquals(recoger)){
-                    JOptionPane.showMessageDialog(null,"El serial que busca no se ha encontrado \n Debe hacer el proceso de registro de nuevo dispositivo","Informacion" ,JOptionPane.OK_OPTION);
-                     RegistrarDispoVigilante RegistroEntrada = new RegistrarDispoVigilante();
-                    this.setVisible(false);
-                    RegistroEntrada.setVisible(true);
-                       int longitudCad = cadena.length();
-
-                String clave = "";
-                String caracter = "";
-                
-                 for (int i = 0; i < 6; i++) {
-                    int numero = (int) (Math.random() * (longitudCad));
-                    caracter = cadena.substring(numero, numero + 1);
-                    clave = clave + caracter;
-                }
-                  RegistrarDispoVigilante.jTextField9.setText(clave);
-                    
-                }
-                                     
-        }catch(Exception e){
-            System.out.println(e.toString()); //desde aqui empieza la consulta en caso de que no se digite nada en el campo
-            JOptionPane.showMessageDialog(null,"Ingrese solo numeros en este campo","Informacion " ,JOptionPane.OK_OPTION);
-        }
-
+buscaSerial();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -283,83 +237,33 @@ this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  
-        
-        try{
-            if(this.jTextField1.getText().equals("")){
-    JOptionPane.showMessageDialog(null,"Ingrese el serial del dispositivo a sacar","Alerta", JOptionPane.ERROR_MESSAGE);
-}else{
-            
-//    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = reg.createStatement();
-            ResultSet resultado = estado.executeQuery("select est_band from bandera where Serial_dispositivo = '"+recoger+"'" );
-            
-                while(resultado.next()){
-                 stat = resultado.getByte("est_band");
-                 //JOptionPane.showMessageDialog(null,"El estado de la bandera es: "+stat,"INfo", JOptionPane.OK_OPTION);    
-                }
-                 if(stat == 0){
-                     JOptionPane.showMessageDialog(null,"El dispositivo ya ha salido","Informacion", JOptionPane.OK_OPTION);
-                 }
-            }
-}catch(Exception e){}
-        
-        if(stat == 1){
-        try {
-            byte bandera = 0; 
-            
-     //Revision de seguridad presalida       
-    
-//    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Connection con00 = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado00 = reg.createStatement();
-            ResultSet resultado00 = estado00.executeQuery("select Id_persona_ing, serial_dispositivo, Fecha_salida from ingreso_dispositivo where Id_persona_ing = '"+Confirmacionexispsal.greencard+"' and serial_dispositivo = '"+this.jTextField1.getText()+"' and Fecha_salida is "+varn+"");            
-    
-                    while(resultado00.next()){
-                      ced = resultado00.getString("Id_persona_ing");
-                      ser = resultado00.getString("serial_dispositivo");
-                     varn1= resultado00.getString("Fecha_salida");
-                      
-                }
-//                  JOptionPane.showMessageDialog(null,"antes del if","Info", JOptionPane.OK_OPTION);    
-//                  JOptionPane.showMessageDialog(null,"cedula consulta:"+ced+"\n serial consulta:"+ser+" ","Info", JOptionPane.OK_OPTION);    
-//                  JOptionPane.showMessageDialog(null,"datos:\n fecha salida:"+fsalida+"\n serial del dispositivo consulta:"+ser+"\n Fecha salida consulta:"+varn+" ","Info", JOptionPane.OK_OPTION);    
-//                  
-                      
-                 if(ced == null && ser == null){
-                 //else{
-                     JOptionPane.showMessageDialog(null, "La cedula no concuerda", "Info",JOptionPane.ERROR_MESSAGE);
-                 }        
-                  
-                  
-                  
-                 //if(ced.contentEquals(jTextField2.getText()) && ser.contentEquals(this.jTextField1.getText())){
-                 else{
-                     
-                     //JOptionPane.showMessageDialog(null,"toy aqui","Info", JOptionPane.OK_OPTION);
-                     PreparedStatement pst = reg.prepareStatement ("INSERT INTO bandera VALUES (?,?);");
-    PreparedStatement pst1 = reg.prepareStatement ("update ingreso_dispositivo set Fecha_salida ='"+fsalida+"' where Id_persona_ing = '"+Confirmacionexispsal.greencard+"' and serial_dispositivo = '"+recoger+"' and Fecha_salida is "+varn+"");
-    //JOptionPane.showMessageDialog(null,"despues del update","Info", JOptionPane.OK_OPTION);    
-    pst.setString(1, recoger);
-    pst.setByte(2, bandera);
-    pst.executeUpdate();
-    pst1.executeUpdate();
-    JOptionPane.showMessageDialog(null,"El dispositivo ha salido correctamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
-    
-       new InicioVigilante().setVisible(true);
-       this.setVisible(false);
-                 }
-                 
-                 
-}catch(Exception e){
-        Logger.getLogger(AgregarVigilanteAdmin.class.getName()).log(Level.SEVERE, null, e);
-    JOptionPane.showMessageDialog(null, "Verifique que todos los campos del formulario esten llenos\n No se ingreso el dato de la persona\n" ,"Atencion",JOptionPane.OK_OPTION);
-}      
-
-        }
-
+salidaDispo();  
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+           buscaSerial();     
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+           salidaDispo();
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            new InicioVigilante().setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
 
     /**
      * @param args the command line arguments
@@ -395,6 +299,152 @@ this.setVisible(false);
             }
         });
     }
+    
+    private void buscaSerial(){
+                if(this.jTextField1.getText().length()== 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Ingrese un dato en el campo de texto para poder \n consultar su dispositivo", "Informacion", JOptionPane.OK_OPTION);
+                }
+        String serial; 
+  
+ 
+        String reco1;
+        String reco2;
+        String reco3;
+        String reco4;
+        String reco5;
+        String reco6;
+
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        fsalida = hourdateFormat.format(date);
+        serial = jTextField1.getText();
+        
+        try{
+                java.sql.Statement estado = reg.createStatement();
+                ResultSet resultado = estado.executeQuery("select * from dispositivo where Serial_dispositivo = '"+serial+"'" );
+            
+                while(resultado.next())
+                {
+                    recoger = resultado.getString("Serial_dispositivo");
+                    reco1 = resultado.getString("Marca_dispositivo");
+                    reco2 = resultado.getString("Modelo_dispositivo");
+                    reco3 = resultado.getString("Id_tipo_dispositivo");
+                    reco4 = resultado.getString("Fecha_registro");
+                    reco5 = resultado.getString("Id_vigilante");
+                
+                        if(serial.equals(recoger))
+                        {
+                            jLabel7.setText("Serial: "+recoger);
+                            jLabel9.setText("Marca: "+reco1);
+                            jLabel10.setText("Modelo: "+reco2);
+                            jLabel12.setText("Tipo dispositivo: "+reco3);
+                            jLabel11.setText("Fecha registro: "+reco4);
+                            jButton3.setEnabled(true);
+                        }
+                }
+                
+                if(!serial.contentEquals(recoger))
+                {
+                    JOptionPane.showMessageDialog(null,"El serial que busca no se ha encontrado \n Debe hacer el proceso de registro de nuevo dispositivo","Informacion" ,JOptionPane.OK_OPTION);
+                    RegistrarDispoVigilante RegistroEntrada = new RegistrarDispoVigilante();
+                    this.setVisible(false);
+                    RegistroEntrada.setVisible(true);
+                    int longitudCad = cadena.length();
+
+                    String clave = "";
+                    String caracter = "";
+                
+                    for (int i = 0; i < 6; i++)
+                    {
+                        int numero = (int) (Math.random() * (longitudCad));
+                        caracter = cadena.substring(numero, numero + 1);
+                        clave = clave + caracter;
+                    }
+                    RegistrarDispoVigilante.jTextField9.setText(clave);
+                    
+                }                         
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.toString()); //desde aqui empieza la consulta en caso de que no se digite nada en el campo
+                JOptionPane.showMessageDialog(null,"Ingrese solo numeros en este campo","Informacion " ,JOptionPane.OK_OPTION);
+            }
+    }
+    
+    private void salidaDispo(){
+        try{
+                if(this.jTextField1.getText().equals(""))
+                {
+                    JOptionPane.showMessageDialog(null,"Ingrese el serial del dispositivo a sacar","Alerta", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    java.sql.Statement estado = reg.createStatement();
+                    ResultSet resultado = estado.executeQuery("select est_band from bandera where Serial_dispositivo = '"+recoger+"'" );
+            
+                        while(resultado.next())
+                        {
+                            stat = resultado.getByte("est_band");
+                            //JOptionPane.showMessageDialog(null,"El estado de la bandera es: "+stat,"INfo", JOptionPane.OK_OPTION);    
+                        }
+                        
+                            if(stat == 0)
+                            {
+                                JOptionPane.showMessageDialog(null,"El dispositivo ya ha salido","Informacion", JOptionPane.OK_OPTION);
+                            }
+                }
+            }catch(Exception e)
+            {
+            }
+        
+            if(stat == 1)
+            {
+                try {
+                       byte bandera = 0; 
+            
+                        //Revision de seguridad presalida       
+    
+
+                        java.sql.Statement estado00 = reg.createStatement();
+                        ResultSet resultado00 = estado00.executeQuery("select Id_persona_ing, serial_dispositivo, Fecha_salida from ingreso_dispositivo where Id_persona_ing = '"+Confirmacionexispsal.greencard+"' and serial_dispositivo = '"+this.jTextField1.getText()+"' and Fecha_salida is "+varn+"");            
+    
+                        while(resultado00.next())
+                        {
+                            ced = resultado00.getString("Id_persona_ing");
+                            ser = resultado00.getString("serial_dispositivo");
+                            varn1= resultado00.getString("Fecha_salida");
+                      
+                        }                
+                      
+                            if(ced == null && ser == null)
+                            {
+                                JOptionPane.showMessageDialog(null, "La cedula no concuerda", "Info",JOptionPane.ERROR_MESSAGE);
+                            }        
+                            else
+                            {
+                                PreparedStatement pst = reg.prepareStatement ("INSERT INTO bandera VALUES (?,?);");
+                                PreparedStatement pst1 = reg.prepareStatement ("update ingreso_dispositivo set Fecha_salida ='"+fsalida+"' where Id_persona_ing = '"+Confirmacionexispsal.greencard+"' and serial_dispositivo = '"+recoger+"' and Fecha_salida is "+varn+"");
+                                pst.setString(1, recoger);
+                                pst.setByte(2, bandera);
+                                pst.executeUpdate();
+                                pst1.executeUpdate();
+                                JOptionPane.showMessageDialog(null,"El dispositivo ha salido correctamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
+    
+                                new InicioVigilante().setVisible(true);
+                                this.setVisible(false);
+                            }
+                 
+                 
+                    }
+                    catch(Exception e)
+                        {
+                            Logger.getLogger(AgregarVigilanteAdmin.class.getName()).log(Level.SEVERE, null, e);
+                            JOptionPane.showMessageDialog(null, "Verifique que todos los campos del formulario esten llenos\n No se ingreso el dato de la persona\n" ,"Atencion",JOptionPane.OK_OPTION);
+                        }      
+
+            }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static final javax.swing.JLabel idout24 = new javax.swing.JLabel();

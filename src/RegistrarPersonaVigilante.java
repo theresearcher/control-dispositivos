@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,6 +25,7 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.jTextField4.setEnabled(false);
     }
+    
 
  
     @SuppressWarnings("unchecked")
@@ -73,6 +75,11 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 100, 30));
 
         jTextField3.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 190, 30));
 
         jTextField1.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
@@ -82,6 +89,11 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 190, 30));
 
         jTextField4.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 190, 30));
 
         jComboBox3.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
@@ -106,6 +118,11 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        jButton4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton4KeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 130, 30));
 
         jButton3.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
@@ -114,6 +131,11 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 130, 30));
@@ -133,7 +155,7 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("VIGILANTE");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 120, 40));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 150, 40));
 
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/-Icono sena v3.png"))); // NOI18N
         getContentPane().add(jcMousePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 70));
@@ -151,37 +173,68 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    String id = this.jTextField3.getText();
-    Object select = this.jComboBox3.getSelectedItem();
- 
-        try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","");
-            java.sql.Statement estado = con.createStatement();
-            ResultSet resultado = estado.executeQuery("select Id_persona_reg from persona where Id_persona_reg = "+id+"");
-                while(resultado.next()){
-                
-                inf = resultado.getString("Id_persona_reg");
-                
-          if(id.equals(inf)){
-                    JOptionPane.showMessageDialog(null,"La cedula a registrar ya esta ingresada en el sistema","ALERTA", JOptionPane.INFORMATION_MESSAGE);
-                }
-          if(select.equals("Seleccione")){
-              JOptionPane.showMessageDialog(null,"Seleccione un cargo de la lista antes de continuar","ALERTA", JOptionPane.INFORMATION_MESSAGE);
-          }
-            }
-                
-                if(!id.equals(inf) && !select.equals("Seleccione") ){      
+String id = jTextField3.getText();
+String nombre = jTextField1.getText();
+String apellido = jTextField7.getText();
+String ficha = jTextField4.getText();
+
+        //El siguiente grupo de IF'S verifican que todos los campos dentro de esta forma
+        //se hallan diligenciado
         
-            ConfirmacionPersona RegistrarPersonaVigilante = new ConfirmacionPersona();
-            this.setVisible(false);
-            RegistrarPersonaVigilante.setVisible(true);
-          }
-            
-        }catch(Exception e){
-            System.out.println(e.toString()); //desde aqui empieza la consulta en caso de que no se digite nada en el campo
-        };
-          
+        
+        if(id.isEmpty()) //Este if verifica que el jTextField3 no este vacio
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un NUMERO DE IDENTIFICACION");
+        }
+        
+        if(nombre.isEmpty()) //Este if verifica que el jTextField1 no este vacio
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un NOMBRE");
+        }
+        
+        if(apellido.isEmpty()) //Este if verifica que el jTextField7 no este vacio
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un APELLIDO");
+        }
+
+        if(jComboBox3.getSelectedIndex()== 0) //Este if verifica que en el jComboBox3 se halla seleccionado algo
+        {
+            JOptionPane.showMessageDialog(null, "Por favor seleccione un CARGO");
+        }
+        
+        if(jComboBox3.getSelectedIndex()== 1) //Si se selecciono el cargo aprendiz, el jTextField4 no debe estar vacio
+        {
+            if(ficha.isEmpty())
+            {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un numero de FICHA");
+            }
+            if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==1 && !ficha.isEmpty()){
+                botonAceptar();
+            }
+        }
+        
+//        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==1 && !ficha.isEmpty())
+//        {
+//            botonAceptar();
+//        }
+
+        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==2)
+        {
+            botonAceptar();
+        }
+        
+        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==3)
+        {
+            botonAceptar();
+        }
+        
+        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==4)
+        {
+            botonAceptar();
+        }
+        
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -191,15 +244,15 @@ public class RegistrarPersonaVigilante extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
 String box;
 
 box = this.jComboBox3.getSelectedItem().toString();
-        switch(box){
-        
+        switch(box)
+        {
         case "Seleccione":
         this.jTextField4.setEnabled(false);
         break;    
@@ -216,10 +269,101 @@ box = this.jComboBox3.getSelectedItem().toString();
         case "Visitante":
         this.jTextField4.setEnabled(false);
         break;
-       
-        
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            InicioVigilante RegistrarPersonaVigilante = new InicioVigilante();
+            this.setVisible(false);
+            RegistrarPersonaVigilante.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
+    private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
+String id = jTextField3.getText();
+String nombre = jTextField1.getText();
+String apellido = jTextField7.getText();
+String ficha = jTextField4.getText();
+
+        //El siguiente grupo de IFS verifican que todos los campos dentro de esta forma
+        //se hallan diligenciado
+        
+        
+        if(id.isEmpty()) //Este if verifica que el jTextField3 no este vacio
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un NUMERO DE IDENTIFICACION");
+        }
+        
+        if(nombre.isEmpty()) //Este if verifica que el jTextField1 no este vacio
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un NOMBRE");
+        }
+        
+        if(apellido.isEmpty()) //Este if verifica que el jTextField7 no este vacio
+        {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un APELLIDO");
+        }
+
+        if(jComboBox3.getSelectedIndex()== 0) //Este if verifica que en el jComboBox3 se halla seleccionado algo
+        {
+            JOptionPane.showMessageDialog(null, "Por favor seleccione un CARGO");
+        }
+        
+        if(jComboBox3.getSelectedIndex()== 1) //Si se selecciono el cargo aprendiz, el jTextField4 no debe estar vacio
+        {
+            if(ficha.isEmpty())
+            {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un numero de FICHA");
+            }
+            if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==1 && !ficha.isEmpty()){
+                botonAceptar();
+            }
+        }
+        
+//        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==1 && !ficha.isEmpty())
+//        {
+//            botonAceptar();
+//        }
+
+        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==2)
+        {
+            botonAceptar();
+        }
+        
+        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==3)
+        {
+            botonAceptar();
+        }
+        
+        if(!id.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && jComboBox3.getSelectedIndex()==4)
+        {
+            botonAceptar();
+        }
+        
+    }//GEN-LAST:event_jButton4KeyPressed
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+char c=evt.getKeyChar();          
+          if(Character.isLetter(c))
+          { 
+              getToolkit().beep(); //supuestamente con esta linea de codigo, cuando ud escribe algo diferente a una letra, el hardware pita...     
+              evt.consume(); 
+              JOptionPane.showMessageDialog(null,"Ingresa solo numeros"); 
+          } 
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+char c=evt.getKeyChar();       
+          if(Character.isLetter(c)) 
+          { 
+              getToolkit().beep(); //supuestamente con esta linea de codigo, cuando ud escribe algo diferente a una letra, el hardware pita...      
+              evt.consume();                
+              JOptionPane.showMessageDialog(null,"Ingresa solo numeros"); 
+          }
+    }//GEN-LAST:event_jTextField4KeyTyped
 
     /**
      * @param args the command line arguments
@@ -255,7 +399,49 @@ box = this.jComboBox3.getSelectedItem().toString();
             }
         });
     }
-
+private void botonAceptar(){
+    String id = this.jTextField3.getText();
+    Object select = this.jComboBox3.getSelectedItem();
+ 
+        try{
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/soft","root","root");
+            java.sql.Statement estado = con.createStatement();
+            ResultSet resultado = estado.executeQuery("select Id_persona_reg from persona where Id_persona_reg = "+id+"");
+                while(resultado.next())
+                {
+                
+                inf = resultado.getString("Id_persona_reg");
+                
+                        if(id.equals(inf))
+                            {
+                             JOptionPane.showMessageDialog(null,"La cedula a registrar ya esta ingresada en el sistema","ALERTA", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        
+                        if(select.equals("Seleccione"))
+                            {
+                                JOptionPane.showMessageDialog(null,"Seleccione un cargo de la lista antes de continuar","ALERTA", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                }
+                
+                        if(!id.equals(inf) && !select.equals("Seleccione") )
+                            {      
+//                                ConfirmacionPersona RegistrarPersonaVigilante = new ConfirmacionPersona();
+//                                this.setVisible(false);
+//                                RegistrarPersonaVigilante.setVisible(true);
+//                                
+                                ConfirmacionPersona conper = new ConfirmacionPersona();
+                                conper.setVisible(true);
+                                dispose();
+                            }
+            
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.toString()); 
+            };
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

@@ -6,6 +6,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.Barcode;
 import com.itextpdf.text.pdf.Barcode128;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -19,16 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Geraldin
- */
 public class ConfirmacionDisp extends javax.swing.JFrame {
     static String marca;
     /**
@@ -111,6 +103,11 @@ public class ConfirmacionDisp extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Myriad Pro", 0, 14)); // NOI18N
@@ -119,6 +116,11 @@ public class ConfirmacionDisp extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
@@ -135,87 +137,33 @@ public class ConfirmacionDisp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-String modelo;
-String cedulaprop;
-String idvigilante ;
- //Date fentrada;
-  String fereg;
-
-int tipodisp;
-
-serial = RegistrarDispoVigilante.jTextField9.getText();
-//marca =  (String) RegistrarDispoVigilante.jComboBox2.getSelectedItem();
- 
-//
-// if(RegistrarDispoVigilante.combo.equals("OTRO")){            
-//           marca = RegistrarDispoVigilante.send;          
-//        }
-//               else{
-//             jLabel9.setVisible(false);
-//             jTextField2.setVisible(false);
-//             jTextField2.setEnabled(false);
-//             marca =  (String) RegistrarDispoVigilante.jComboBox2.getSelectedItem();
-//        }
-//
-//            if(!RegistrarDispoVigilante.combo.equals("OTRO")){            
-//          
-//            marca =  (String) RegistrarDispoVigilante.combo;
-//            }
-
-modelo = RegistrarDispoVigilante.jTextField6.getText();
-tipodisp = RegistrarDispoVigilante.jComboBox1.getSelectedIndex();
-//JOptionPane.showMessageDialog(null, "El item seleccionado del combo box es: "+RegistrarDispoVigilante.jComboBox1.getSelectedIndex());
-cedulaprop = RegistrarDispoVigilante.jTextField1.getText();
-idvigilante=RegistrarDispoVigilante.id.getText();
-
-
-//esto es para el ingreso de las personas
-try {
-    
-    DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    fereg = hourdateFormat.format(date);
-    System.out.println("fecha"+fereg);
-    
-        PreparedStatement pst =registro.prepareStatement("INSERT INTO dispositivo VALUES (?,?,?,?,?,?,?);");
-        pst.setString(1, getSerial());
-        pst.setString(2, marca);
-        pst.setString(3, modelo);
-        pst.setInt(4, tipodisp);
-        pst.setString(5, cedulaprop);
-        pst.setString(6, idvigilante);
-        pst.setString(7, fereg);
-        
-        pst.executeUpdate();
-JOptionPane.showMessageDialog(null,"El dispositivo se ha registrado exitosamente","Registro de dispositivo", JOptionPane.INFORMATION_MESSAGE);
-         try{
-  TestBarCode.barras();
-  
-    }catch (Exception ex) {
-   
-         JOptionPane.showMessageDialog(null,"El archivo no se ha encontrado","Archivo no encontrado", JOptionPane.OK_OPTION);
-           }
-        
-         } catch (SQLException ex) {
-        Logger.getLogger(AgregarVigilanteAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(null, "Verifique que todos los campos del formulario esten llenos\n No se ingreso el dato del dispositivo\n","Atencion",JOptionPane.OK_OPTION);
-    }
-
- 
-
-
-
-
-new InicioVigilante().setVisible(true);
-this.setVisible(false);
- 
+guardarDisp(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        new InicioVigilante().setVisible(true);
-this.setVisible(false);
+    new RegistrarDispoVigilante().setVisible(true);
+    aleatorio();  
+    this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+
+    int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+            new RegistrarDispoVigilante().setVisible(true);
+            aleatorio();  
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+  int key = evt.getKeyCode(); 
+        if (key == KeyEvent.VK_ENTER)
+        {
+         guardarDisp();  
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
 
     
     
@@ -254,6 +202,73 @@ this.setVisible(false);
         });
     }
 
+    private void aleatorio(){
+        int longitudCad = cadena.length();
+
+                String clave = "";
+                String caracter = "";
+                
+                 for (int i = 0; i < 6; i++) {
+                    int numero = (int) (Math.random() * (longitudCad));
+                    caracter = cadena.substring(numero, numero + 1);
+                    clave = clave + caracter;
+                }
+         
+        RegistrarDispoVigilante.jTextField9.setText(clave);
+    }
+    
+    
+    
+private void guardarDisp(){
+String modelo;
+String cedulaprop;
+String idvigilante;
+String fereg;
+
+int tipodisp;
+
+serial = RegistrarDispoVigilante.jTextField9.getText();
+modelo = RegistrarDispoVigilante.jTextField6.getText();
+tipodisp = RegistrarDispoVigilante.jComboBox1.getSelectedIndex();
+cedulaprop = RegistrarDispoVigilante.jTextField1.getText();
+idvigilante=RegistrarDispoVigilante.id.getText();
+
+
+//esto es para el ingreso de las personas
+try {
+    
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        fereg = hourdateFormat.format(date);
+        System.out.println("fecha"+fereg);
+    
+        PreparedStatement pst =registro.prepareStatement("INSERT INTO dispositivo VALUES (?,?,?,?,?,?,?);");
+        pst.setString(1, getSerial());
+        pst.setString(2, marca);
+        pst.setString(3, modelo);
+        pst.setInt(4, tipodisp);
+        pst.setString(5, cedulaprop);
+        pst.setString(6, idvigilante);
+        pst.setString(7, fereg);
+        pst.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"El dispositivo se ha registrado exitosamente","Registro de dispositivo", JOptionPane.INFORMATION_MESSAGE);
+        
+             try{
+                    TestBarCode.barras();
+                }
+                catch (Exception ex)
+                { 
+                    JOptionPane.showMessageDialog(null,"El archivo no se ha encontrado"+ex);
+                }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(AgregarVigilanteAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Verifique que todos los campos del formulario esten llenos\n No se ingreso el dato del dispositivo\n","Atencion",JOptionPane.OK_OPTION);
+    }
+new InicioVigilante().setVisible(true);
+this.setVisible(false);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
